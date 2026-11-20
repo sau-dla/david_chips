@@ -808,22 +808,25 @@ function addCustomComment(e) {
 function toggleFollow() {
   isFollowing = !isFollowing;
   const followBtn = document.getElementById("followBtn");
+  const followBtnMobile = document.getElementById("followBtnMobile");
   const followersCount = document.getElementById("followersCount");
-  const followersCountMobile = document.getElementById("followersCountMobile");
 
-  if (isFollowing) {
-    followBtn.innerText = "Siguiendo";
-    followBtn.classList.add("following");
-    followersCount.innerText = "20,000,001";
-    followersCountMobile.innerText = "20.1M";
-    showToast("¡Ahora sigues a @emprededavid! 🍪");
-  } else {
-    followBtn.innerText = "Seguir";
-    followBtn.classList.remove("following");
-    followersCount.innerText = "20M";
-    followersCountMobile.innerText = "20M";
-    showToast("Dejaste de seguir a @emprededavid");
+  [followBtn, followBtnMobile].forEach(btn => {
+    if (!btn) return;
+    if (isFollowing) {
+      btn.innerText = "Siguiendo";
+      btn.classList.add("following");
+    } else {
+      btn.innerText = "Seguir";
+      btn.classList.remove("following");
+    }
+  });
+
+  if (followersCount) {
+    followersCount.innerText = isFollowing ? "20,000,001" : "20M";
   }
+
+  showToast(isFollowing ? "¡Ahora sigues a @emprededavid! 🍪" : "Dejaste de seguir a @emprededavid");
 }
 
 function copyProfileLink() {

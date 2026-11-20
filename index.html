@@ -12,10 +12,22 @@
 </head>
 <body class="dark-mode">
 
-  <!-- Barra de navegación superior estilo Instagram Dark Mode (Sin panel de buscar) -->
+  <!-- Barra de navegación superior estilo Instagram Dark Mode -->
   <header class="instagram-nav">
     <div class="nav-container">
-      <div class="nav-logo">
+      <!-- En Móvil: Identificador de cuenta de Instagram con verificado -->
+      <div class="nav-mobile-title">
+        <span class="nav-mobile-username">emprededavid</span>
+        <span class="verified-badge-mini">
+          <svg aria-label="Verificado" fill="#0095f6" height="15" viewBox="0 0 40 40" width="15">
+            <path d="M19.998 3.094 14.638 0l-5.9 3.094-6.358-.873-.873 6.358L0 14.638l3.094 5.36L0 25.358l.873 6.059 6.358-.873 5.9 3.094 5.36-3.094 5.36 3.094 5.9-3.094 6.358.873.873-6.059L40 25.358l-3.094-5.36L40 14.638l-.873-6.059-6.358.873-5.9-3.094z" fill="#0095f6"></path>
+            <path d="M17.47 28.532 9.548 20.61l3.057-3.057 4.865 4.865 10.93-10.93 3.057 3.057z" fill="#fff"></path>
+          </svg>
+        </span>
+      </div>
+
+      <!-- En Desktop: Logo clásico de Instagram -->
+      <div class="nav-logo desktop-only">
         <span class="ig-logo-text">Instagram</span>
       </div>
 
@@ -41,68 +53,82 @@
 
     <!-- Sección de Información de Perfil -->
     <section class="profile-header">
-      <!-- Foto de Perfil Oficial: LOGO DAVID-CHIPS -->
-      <div class="avatar-wrapper">
-        <div class="story-ring" onclick="openStoryHighlight(2)" title="Ver historia de David-Chips">
-          <img class="profile-avatar" src="assets/logo.webp" alt="David-Chips Logo Oficial">
+      <!-- Fila Superior: Avatar + Detalles (Desktop) / Avatar + Estadísticas (Móvil) -->
+      <div class="profile-main-row">
+        <!-- Foto de Perfil Oficial: LOGO DAVID-CHIPS -->
+        <div class="avatar-wrapper">
+          <div class="story-ring" onclick="openStoryHighlight(2)" title="Ver historia de David-Chips">
+            <img class="profile-avatar" src="assets/logo.webp" alt="David-Chips Logo Oficial">
+          </div>
+        </div>
+
+        <!-- Columna de Información -->
+        <div class="profile-info-col">
+          <!-- Línea Superior de Escritorio: Nombre de usuario + Botones -->
+          <div class="profile-top-line desktop-only">
+            <h2 class="username">emprededavid</h2>
+            <span class="verified-badge" title="Cuenta verificada">
+              <svg aria-label="Verificado" fill="#0095f6" height="18" viewBox="0 0 40 40" width="18">
+                <path d="M19.998 3.094 14.638 0l-5.9 3.094-6.358-.873-.873 6.358L0 14.638l3.094 5.36L0 25.358l.873 6.059 6.358-.873 5.9 3.094 5.36-3.094 5.36 3.094 5.9-3.094 6.358.873.873-6.059L40 25.358l-3.094-5.36L40 14.638l-.873-6.059-6.358.873-5.9-3.094z" fill="#0095f6"></path>
+                <path d="M17.47 28.532 9.548 20.61l3.057-3.057 4.865 4.865 10.93-10.93 3.057 3.057z" fill="#fff"></path>
+              </svg>
+            </span>
+
+            <div class="profile-buttons desktop-buttons">
+              <button class="btn-follow" id="followBtn" onclick="toggleFollow()">Seguir</button>
+              <button class="btn-share" onclick="copyProfileLink()">Compartir perfil</button>
+            </div>
+          </div>
+
+          <!-- Estadísticas (Desktop y Móvil integradas al lado del Avatar en móvil) -->
+          <ul class="stats-list">
+            <li><strong>9</strong><span> publicaciones</span></li>
+            <li class="stat-clickable" onclick="openFollowersModal()" title="Ver seguidores">
+              <strong id="followersCount">20M</strong><span> seguidores</span>
+            </li>
+            <li class="stat-clickable" onclick="openFollowingModal()" title="Ver seguidos">
+              <strong>5</strong><span> seguidos</span>
+            </li>
+          </ul>
+
+          <!-- Biografía en Desktop -->
+          <div class="profile-bio desktop-only">
+            <h1 class="bio-full-name">David-Chips 🍪 | David</h1>
+            <div class="bio-tag">Repostero Infantil & Pequeño Emprendedor 🌟</div>
+            <p class="bio-description">
+              ✨ ¡David-Chips! El sabor que te saca una sonrisa 🍪🎅<br>
+              ⭐ Venta exclusiva de galletas especiales por unidad (500 Bs.)<br>
+              ❤️ ¡Horneadas con amor para endulzar tu Navidad!
+            </p>
+            <div class="bio-link">
+              <span>🔗</span>
+              <a href="#posts-grid" class="school-link">colegio-monsenor-castro.com/david-chips</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Datos del Usuario y Botones -->
-      <div class="profile-details">
-        <div class="profile-top-line">
-          <h2 class="username">emprededavid</h2>
-          <span class="verified-badge" title="Cuenta verificada">
-            <svg aria-label="Verificado" fill="#0095f6" height="18" viewBox="0 0 40 40" width="18">
-              <path d="M19.998 3.094 14.638 0l-5.9 3.094-6.358-.873-.873 6.358L0 14.638l3.094 5.36L0 25.358l.873 6.059 6.358-.873 5.9 3.094 5.36-3.094 5.36 3.094 5.9-3.094 6.358.873.873-6.059L40 25.358l-3.094-5.36L40 14.638l-.873-6.059-6.358.873-5.9-3.094z" fill="#0095f6"></path>
-              <path d="M17.47 28.532 9.548 20.61l3.057-3.057 4.865 4.865 10.93-10.93 3.057 3.057z" fill="#fff"></path>
-            </svg>
-          </span>
-
-          <div class="profile-buttons">
-            <button class="btn-follow" id="followBtn" onclick="toggleFollow()">Seguir</button>
-            <button class="btn-share" onclick="copyProfileLink()">Compartir perfil</button>
-          </div>
+      <!-- Biografía en Móvil (a todo lo ancho 100% de la pantalla debajo de avatar y stats) -->
+      <div class="profile-bio mobile-only">
+        <h1 class="bio-full-name">David-Chips 🍪 | David</h1>
+        <div class="bio-tag">Repostero Infantil & Pequeño Emprendedor 🌟</div>
+        <p class="bio-description">
+          ✨ ¡David-Chips! El sabor que te saca una sonrisa 🍪🎅<br>
+          ⭐ Venta exclusiva de galletas especiales por unidad (500 Bs.)<br>
+          ❤️ ¡Horneadas con amor para endulzar tu Navidad!
+        </p>
+        <div class="bio-link">
+          <span>🔗</span>
+          <a href="#posts-grid" class="school-link">colegio-monsenor-castro.com/david-chips</a>
         </div>
+      </div>
 
-        <!-- Estadísticas (Desktop) con Click para ver Seguidos y Seguidores -->
-        <ul class="stats-list desktop-stats">
-          <li><strong>9</strong> publicaciones</li>
-          <li class="stat-clickable" onclick="openFollowersModal()" title="Ver seguidores">
-            <strong id="followersCount">20M</strong> seguidores
-          </li>
-          <li class="stat-clickable" onclick="openFollowingModal()" title="Ver seguidos">
-            <strong>5</strong> seguidos
-          </li>
-        </ul>
-
-        <!-- Biografía / Descripción limpia y personalizada -->
-        <div class="profile-bio">
-          <h1 class="bio-full-name">David-Chips 🍪 | David</h1>
-          <div class="bio-tag">Repostero Infantil & Pequeño Emprendedor 🌟</div>
-          <p class="bio-description">
-            ✨ ¡David-Chips! El sabor que te saca una sonrisa 🍪🎅<br>
-            ⭐ Venta exclusiva de galletas especiales por unidad (500 Bs.)<br>
-            ❤️ ¡Horneadas con amor para endulzar tu Navidad!
-          </p>
-          <div class="bio-link">
-            <span>🔗</span>
-            <a href="#posts-grid" class="school-link">colegio-monsenor-castro.com/david-chips</a>
-          </div>
-        </div>
+      <!-- Botones de Acción Móvil: Ancho completo 50% / 50% lado a lado -->
+      <div class="mobile-action-buttons mobile-only">
+        <button class="btn-follow" id="followBtnMobile" onclick="toggleFollow()">Seguir</button>
+        <button class="btn-share" onclick="copyProfileLink()">Compartir perfil</button>
       </div>
     </section>
-
-    <!-- Estadísticas para Celulares / Mobile -->
-    <ul class="stats-list mobile-stats">
-      <li><strong>9</strong><span>publicaciones</span></li>
-      <li class="stat-clickable" onclick="openFollowersModal()">
-        <strong id="followersCountMobile">20M</strong><span>seguidores</span>
-      </li>
-      <li class="stat-clickable" onclick="openFollowingModal()">
-        <strong>5</strong><span>seguidos</span>
-      </li>
-    </ul>
 
     <!-- Historias Destacadas (3 Highlights de Galletas Navideñas) -->
     <section class="highlights-section">
