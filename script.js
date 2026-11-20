@@ -1,41 +1,35 @@
 /**
  * Script interactivo para el Instagram Dark Mode de @emprededavid
- * 100% Galletas Navideñas (Sin fotos de personas)
- * Incluye:
- * - Logo oficial David-Chips
- * - Flyer oficial con precio (500 Bs.) y fecha (8 de diciembre)
- * - 7 publicaciones exclusivas de GALLETAS NAVIDEÑAS especiales por unidad
- * - 3 historias destacadas
- * - 5 seguidos específicos: Tibisay List, Felipe Villamizar, Rufa María, Tobby Ramón, Saúl Henríquez
- * - 50 seguidores ficticios de niños y padres clientes
+ * 100% Galletas Navideñas (Sin fotos de personas en publicaciones)
+ * Caricaturas personalizadas para la familia y mascotas en Seguidos
  */
 
-// 1. LOS 5 SEGUIDOS EXACTOS SOLICITADOS
+// 1. LOS 5 SEGUIDOS EXACTOS CON SUS CARICATURAS PERSONALIZADAS
 const followingData = [
   {
     handle: "tibisay_list",
-    name: "Tibisay List",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80"
+    name: "Tibisay List (Mamá de David) ❤️",
+    avatar: "assets/avatars/tibby_avatar.jpg"
   },
   {
     handle: "felipe_villamizar",
-    name: "Felipe Villamizar",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&auto=format&fit=crop&q=80"
+    name: "Felipe Villamizar (Papá de David) 👨",
+    avatar: "assets/avatars/felipe_avatar.jpg"
   },
   {
     handle: "rufa_maria",
-    name: "Rufa María",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80"
+    name: "Rufa María 🐾 (Perrita Mestiza Negra)",
+    avatar: "assets/avatars/rufa_avatar.jpg"
   },
   {
     handle: "tobby_ramon",
-    name: "Tobby Ramón",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+    name: "Tobby Ramón 🐶 (Perrito Mestizo Color Miel)",
+    avatar: "assets/avatars/tobby_avatar.jpg"
   },
   {
     handle: "sau_henriquez",
-    name: "Saúl Henríquez",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+    name: "Saulimar Henríquez 🌟",
+    avatar: "assets/avatars/saulimar_avatar.jpg"
   }
 ];
 
@@ -105,6 +99,24 @@ const postsData = [
     caption: "🎄✨ ¡DAVID-CHIPS: El sabor que te saca una sonrisa! ✨🎄\n\nlas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Ven por tus galletas especiales por unidad a solo 500 Bs. ¡Las galletitas más frescas y ricas para toda la familia! 🍪🎅🎁",
     comments: [
       {
+        user: "tibisay_list",
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "¡Hijo hermoso, qué orgullo! Esas galletas de David-Chips están hechas con todo tu amor. ¡Te amo! ❤️🍪",
+        time: "2h"
+      },
+      {
+        user: "felipe_villamizar",
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "¡Éxito total campeón! Todo el colegio va a disfrutar de tus galletitas este 8 de diciembre 👏🔥",
+        time: "1h"
+      },
+      {
+        user: "sau_henriquez",
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Aparto mis galletitas desde ya David! Eres el repostero estrella de la familia 🌟😋",
+        time: "1h"
+      },
+      {
         user: "mateo_galletitas",
         avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
         text: "¡David, el año pasado las galletas estaban insuperables! ¡De primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
@@ -114,12 +126,6 @@ const postsData = [
         user: "valen_navidad",
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
         text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
-        time: "1h"
-      },
-      {
-        user: "sebas_crack23",
-        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80",
-        text: "¡Guárdame una especial de árbol de navidad con chispas David! Eres el mejor chef del colegio 🔥🍪",
         time: "45m"
       },
       {
@@ -127,12 +133,6 @@ const postsData = [
         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80",
         text: "¡Todo el colegio Monseñor Castro está orgulloso de tu talento David! Ya aparté mi galleta para el recreo 👏❤️",
         time: "30m"
-      },
-      {
-        user: "camila_sweet",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
-        text: "¡Las mejores galletas navideñas del mundo! No me lo pierdo por nada este 8 de diciembre ✨",
-        time: "15m"
       }
     ]
   },
@@ -586,7 +586,7 @@ function filterFollowers() {
 }
 
 // ==========================================
-// MODAL DE SEGUIDOS (LOS 5 EXACTOS)
+// MODAL DE SEGUIDOS (LOS 5 EXACTOS CON CARICATURAS)
 // ==========================================
 function openFollowingModal() {
   const modal = document.getElementById("followingModal");
