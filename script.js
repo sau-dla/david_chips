@@ -1,6 +1,6 @@
 /**
  * Script interactivo para el Instagram Dark Mode de @emprededavid
- * Incluye la publicación especial de TOBBY RAMÓN (El ayudante perruno chef)
+ * Incluye publicaciones de RUFA MARÍA (Ayudante #1) y TOBBY RAMÓN (Ayudante #2)
  * Caricaturas personalizadas para la familia, mascotas y amigos verificados
  * Lenguaje 100% infantil, dulce, cariñoso y respetuoso (sin palabras de calle o malandras)
  * Padres expresando amor ("Hijo te amamos") y gran orgullo familiar
@@ -28,12 +28,12 @@ const followingData = [
   },
   {
     handle: "rufa_maria",
-    name: "Rufa María 🐾 (Perrita Mestiza Negra)",
+    name: "Rufa María 🐾 (Ayudante #1 de Cocina)",
     avatar: "assets/avatars/rufa_avatar.jpg"
   },
   {
     handle: "tobby_ramon",
-    name: "Tobby Ramón 🐶 (El Ayudante Chef)",
+    name: "Tobby Ramón 🐶 (Ayudante #2 de Cocina)",
     avatar: "assets/avatars/tobby_avatar.jpg"
   },
   {
@@ -97,7 +97,7 @@ const followersData = [
   { handle: "david_chips_fans", name: "Club de Fans David-Chips 🍪", avatar: "assets/logo.webp" }
 ];
 
-// 3. PUBLICACIONES (INCLUYENDO LA PUBLICACIÓN OFICIAL DE TOBBY RAMÓN COMO AYUDANTE)
+// 3. PUBLICACIONES OFICIALES (INCLUYE RUFA #1 Y TOBBY RAMÓN #2)
 const postsData = [
   {
     id: 1,
@@ -167,34 +167,108 @@ const postsData = [
     ]
   },
   {
-    id: 8,
-    img: "assets/tobby_chef.jpg",
-    badge: "🐾 AYUDANTE ESTRELLA",
-    likes: 142500,
+    id: 9,
+    img: "assets/rufa_chef.jpg",
+    badge: "🐾 AYUDANTE #1 DE COCINA",
+    likes: 156800,
     liked: false,
     time: "HACE 1 HORA",
-    caption: "¡Les presento oficialmente a mi ayudante de cocina: Tobby Ramón! 🐶👨‍🍳 Con su gorro de chef y su pañuelo oficial de David-Chips. Siempre a mi lado supervisando que cada galletita navideña quede perfecta y con mucho amor. ¡El mejor compañero repostero del mundo! ❤️🍪🐾",
+    caption: "¡Y aquí está la reina de la casa y mi Ayudante Número 1 de cocina: Rufa María! 🐾👩‍🍳 Supervisando atenta desde el piso de la cocina que todas las bandejas de galletitas navideñas salgan con el toque mágico. (Tobby Ramón es el ayudante #2 pero los dos hacen el mejor equipo perruno de David-Chips ❤️🍪).",
     comments: [
       {
         user: "tibisay_list",
         verified: false,
         avatar: "assets/avatars/tibby_avatar.jpg",
-        text: "¡Hijo te amamos! Tobby Ramón se ve tan hermoso con su gorrito de chef. ¡El mejor equipo de repostería del mundo! 🐶💖🍪",
+        text: "¡Hijo te amamos con toda el alma! Rufa se ve tan tierna y juiciosa con su gorrito de chef cuidando las galletas. ¡La mejor ayudante número 1 del mundo! 🐶💖🍪",
         time: "55m"
       },
       {
         user: "felipe_villamizar",
         verified: false,
         avatar: "assets/avatars/felipe_avatar.jpg",
-        text: "¡Hijo te amamos! Qué fotaza de Tobby Ramón con el uniforme de David-Chips. ¡Ese ayudante se merece una galletita especial! 👏👨🐾",
+        text: "¡Hijo te amamos! Qué fotaza de Rufa María lista para la producción navideña. Con Rufa #1 y Ramón #2 este 8 de diciembre va a ser un éxito total 👏👨🐾",
         time: "50m"
+      },
+      {
+        user: "tobby_ramon",
+        verified: false,
+        avatar: "assets/avatars/tobby_avatar.jpg",
+        text: "¡Guau guau! 🐶👨‍🍳 (Ramón reportándose como el ayudante #2 respetando a la jefa Rufa)",
+        time: "45m"
       },
       {
         user: "rufa_maria",
         verified: false,
         avatar: "assets/avatars/rufa_avatar.jpg",
-        text: "¡Guau guau! 🐾 (Rufa esperando su turno para ponerse el gorro de chef también)",
-        time: "45m"
+        text: "¡Guau! 🐾👩‍🍳 (Rufa atenta y lista para cuidar que ninguna galleta se pase de horno)",
+        time: "40m"
+      },
+      {
+        user: "sau_henriquez",
+        verified: false,
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Me derrito de amor con Rufa María! Qué carita tan dulce y qué orgullo de ayudante 🥰✨",
+        time: "35m"
+      },
+      {
+        user: "kleyver_rivero",
+        verified: true,
+        avatar: "assets/avatars/kleyver_avatar.jpg",
+        text: "¡Rufa es la jefa de la cocina David! Qué linda foto con sus bandejas de galletas 🐶🍪",
+        time: "30m"
+      },
+      {
+        user: "juan_david",
+        verified: true,
+        avatar: "assets/avatars/juandavid_avatar.jpg",
+        text: "¡Esos dos perritos son los mejores ayudantes de toda la ciudad David! 😄👏",
+        time: "25m"
+      },
+      {
+        user: "alex_flores_",
+        verified: true,
+        avatar: "assets/avatars/alex_avatar.jpg",
+        text: "¡Qué hermosa postal David! Toda la familia unida en este proyecto tan lindo 🌟",
+        time: "20m"
+      },
+      {
+        user: "dei_v",
+        verified: true,
+        avatar: "assets/avatars/deiv_avatar.jpg",
+        text: "Rufa y Ramón los verdaderos jefes de control de calidad de David-Chips 🐾🍪 Bendiciones David 🌊✨",
+        time: "15m"
+      }
+    ]
+  },
+  {
+    id: 8,
+    img: "assets/tobby_chef.jpg",
+    badge: "🐾 AYUDANTE #2 DE COCINA",
+    likes: 142500,
+    liked: false,
+    time: "HACE 2 HORAS",
+    caption: "¡Les presento a mi fiel ayudante de cocina número 2: Tobby Ramón! 🐶👨‍🍳 Con su gorro de chef y su pañuelo oficial de David-Chips. Siempre a mi lado supervisando que cada galletita navideña quede crujiente y deliciosa. ¡El mejor compañero repostero! ❤️🍪🐾",
+    comments: [
+      {
+        user: "tibisay_list",
+        verified: false,
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "¡Hijo te amamos! Tobby Ramón se ve tan hermoso con su gorrito de chef y su pañuelito rojo. ¡Hermoso mi vida! 🐶💖🍪",
+        time: "1h"
+      },
+      {
+        user: "felipe_villamizar",
+        verified: false,
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "¡Hijo te amamos! Qué fotaza de Ramón con el uniforme de David-Chips. ¡Ese ayudante número 2 se merece un aplauso! 👏👨🐾",
+        time: "1h"
+      },
+      {
+        user: "rufa_maria",
+        verified: false,
+        avatar: "assets/avatars/rufa_avatar.jpg",
+        text: "¡Guau guau! 🐾 (Rufa aprobando el trabajo de su hermanito Ramón)",
+        time: "50m"
       },
       {
         user: "tobby_ramon",
