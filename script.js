@@ -299,10 +299,10 @@ const postsData = [
         time: "1h"
       },
       {
-        user: "mateo_galletitas",
-        verified: false,
-        avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
-        text: "¡David, de primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
+        user: "enyel_eugenio",
+        verified: true,
+        avatar: "assets/avatars/enyel_avatar.jpg",
+        text: "¡Mucho éxito en el colegio Monseñor Castro este 8 de diciembre David! Todos estamos esperando probar esas deliciosas galletas 👓🍪✨",
         time: "45m"
       },
       {
@@ -313,10 +313,10 @@ const postsData = [
         time: "35m"
       },
       {
-        user: "valen_navidad",
-        verified: false,
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
+        user: "alex_flores_",
+        verified: true,
+        avatar: "assets/avatars/alex_avatar.jpg",
+        text: "¡Una iniciativa maravillosa David! Toda la bendición del mundo para tu venta del 8 de diciembre 👏🌟",
         time: "30m"
       }
     ]
@@ -359,10 +359,10 @@ const postsData = [
         time: "18h"
       },
       {
-        user: "lucas_aventuras",
+        user: "sau_henriquez",
         verified: false,
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-        text: "¡A mííí! Esas estrellas son mis favoritas de Navidad 😋",
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Esas estrellas nevadas brillan como tú mi niño hermoso! Te queremos un montón 🥰❄️🍪",
         time: "1d"
       }
     ]
@@ -533,10 +533,10 @@ const postsData = [
         time: "2sem"
       },
       {
-        user: "abuela_teresa",
-        verified: false,
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi nieto consentido y trabajador! Te van a quedar deliciosas como siempre, Dios te bendiga mi cielo ❤️",
+        user: "elvis_moya",
+        verified: true,
+        avatar: "assets/avatars/elvis_avatar.jpg",
+        text: "¡Toda la vibra positiva David! Te mereces el mayor de los éxitos en este proyecto tan bonito con tus papás 🧢🍪👏",
         time: "2sem"
       }
     ]
