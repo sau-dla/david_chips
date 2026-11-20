@@ -100,73 +100,6 @@ const followersData = [
 // 3. PUBLICACIONES OFICIALES (INCLUYE RUFA #1 Y TOBBY RAMÓN #2)
 const postsData = [
   {
-    id: 1,
-    img: "assets/flyer.jpg",
-    badge: "📌 ¡ANUNCIO OFICIAL!",
-    likes: 125430,
-    liked: false,
-    time: "HACE 2 HORAS",
-    caption: "🎄✨ ¡DAVID-CHIPS: El sabor que te saca una sonrisa! ✨🎄\n\nlas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Ven por tus galletas especiales por unidad a solo 500 Bs. ¡Las galletitas más frescas y ricas para toda la familia! 🍪🎅🎁",
-    comments: [
-      {
-        user: "tibisay_list",
-        verified: false,
-        avatar: "assets/avatars/tibby_avatar.jpg",
-        text: "¡Hijo te amamos con todo nuestro corazón! ❤️ Eres nuestro mayor orgullo. Esas galletas de David-Chips están hechas con todo tu amor y dedicación. ¡Que Dios te bendiga siempre! 🍪✨",
-        time: "2h"
-      },
-      {
-        user: "felipe_villamizar",
-        verified: false,
-        avatar: "assets/avatars/felipe_avatar.jpg",
-        text: "¡Hijo te amamos muchísimo! Tu mamá y yo estamos muy felices de ver lo responsable y talentoso que eres. ¡Todo el colegio Monseñor Castro disfrutará de tus galletitas este 8 de diciembre! 👨❤️👏",
-        time: "2h"
-      },
-      {
-        user: "dei_v",
-        verified: true,
-        avatar: "assets/avatars/deiv_avatar.jpg",
-        text: "¡Saludos David! Tienes un talento maravilloso para la repostería a tu edad. Te deseo el mayor de los éxitos en tu venta navideña, Dios te bendiga mucho 🌊🍪✨",
-        time: "1h"
-      },
-      {
-        user: "elvis_moya",
-        verified: true,
-        avatar: "assets/avatars/elvis_avatar.jpg",
-        text: "¡Qué hermoso emprendimiento David! Eres un niño muy dedicado y alegre. Te van a quedar deliciosas todas las galletitas 👏🍪",
-        time: "1h"
-      },
-      {
-        user: "kleyver_rivero",
-        verified: true,
-        avatar: "assets/avatars/kleyver_avatar.jpg",
-        text: "¡David, qué emoción! Te deseo muchas ventas amigo, el 8 de diciembre estaré de primero en la fila en el colegio Monseñor Castro para comprar la mía 🙌🍪",
-        time: "1h"
-      },
-      {
-        user: "sau_henriquez",
-        verified: false,
-        avatar: "assets/avatars/saulimar_avatar.jpg",
-        text: "¡Mi niño hermoso! Eres un orgullo para toda la familia. ¡Ya tengo apartadas mis galletitas especiales para el 8 de diciembre! Te queremos un montón 🥰🍪✨",
-        time: "1h"
-      },
-      {
-        user: "mateo_galletitas",
-        verified: false,
-        avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
-        text: "¡David, de primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
-        time: "45m"
-      },
-      {
-        user: "valen_navidad",
-        verified: false,
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
-        time: "30m"
-      }
-    ]
-  },
-  {
     id: 9,
     img: "assets/rufa_chef.jpg",
     badge: "🐾 AYUDANTE #1 DE COCINA",
@@ -311,6 +244,73 @@ const postsData = [
         avatar: "assets/avatars/saulimar_avatar.jpg",
         text: "¡Me muero de amor con Tobby Ramón! Qué elegancia con su pañuelo de David-Chips 🥰🐾",
         time: "15m"
+      }
+    ]
+  },
+  {
+    id: 1,
+    img: "assets/flyer.jpg",
+    badge: "📌 ¡ANUNCIO OFICIAL!",
+    likes: 125430,
+    liked: false,
+    time: "HACE 2 HORAS",
+    caption: "🎄✨ ¡DAVID-CHIPS: El sabor que te saca una sonrisa! ✨🎄\n\nlas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Ven por tus galletas especiales por unidad a solo 500 Bs. ¡Las galletitas más frescas y ricas para toda la familia! 🍪🎅🎁",
+    comments: [
+      {
+        user: "tibisay_list",
+        verified: false,
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "¡Hijo te amamos con todo nuestro corazón! ❤️ Eres nuestro mayor orgullo. Esas galletas de David-Chips están hechas con todo tu amor y dedicación. ¡Que Dios te bendiga siempre! 🍪✨",
+        time: "2h"
+      },
+      {
+        user: "felipe_villamizar",
+        verified: false,
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "¡Hijo te amamos muchísimo! Tu mamá y yo estamos muy felices de ver lo responsable y talentoso que eres. ¡Todo el colegio Monseñor Castro disfrutará de tus galletitas este 8 de diciembre! 👨❤️👏",
+        time: "2h"
+      },
+      {
+        user: "dei_v",
+        verified: true,
+        avatar: "assets/avatars/deiv_avatar.jpg",
+        text: "¡Saludos David! Tienes un talento maravilloso para la repostería a tu edad. Te deseo el mayor de los éxitos en tu venta navideña, Dios te bendiga mucho 🌊🍪✨",
+        time: "1h"
+      },
+      {
+        user: "elvis_moya",
+        verified: true,
+        avatar: "assets/avatars/elvis_avatar.jpg",
+        text: "¡Qué hermoso emprendimiento David! Eres un niño muy dedicado y alegre. Te van a quedar deliciosas todas las galletitas 👏🍪",
+        time: "1h"
+      },
+      {
+        user: "kleyver_rivero",
+        verified: true,
+        avatar: "assets/avatars/kleyver_avatar.jpg",
+        text: "¡David, qué emoción! Te deseo muchas ventas amigo, el 8 de diciembre estaré de primero en la fila en el colegio Monseñor Castro para comprar la mía 🙌🍪",
+        time: "1h"
+      },
+      {
+        user: "sau_henriquez",
+        verified: false,
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Mi niño hermoso! Eres un orgullo para toda la familia. ¡Ya tengo apartadas mis galletitas especiales para el 8 de diciembre! Te queremos un montón 🥰🍪✨",
+        time: "1h"
+      },
+      {
+        user: "mateo_galletitas",
+        verified: false,
+        avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
+        text: "¡David, de primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
+        time: "45m"
+      },
+      {
+        user: "valen_navidad",
+        verified: false,
+        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
+        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
+        time: "30m"
       }
     ]
   },
