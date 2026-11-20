@@ -1,10 +1,11 @@
 /**
  * Script interactivo para el Instagram Dark Mode de @emprededavid
+ * 100% Galletas Navideñas (Sin fotos de personas)
  * Incluye:
  * - Logo oficial David-Chips
  * - Flyer oficial con precio (500 Bs.) y fecha (8 de diciembre)
- * - 7 publicaciones con galletas navideñas especiales por unidad (sin mención de cajas)
- * - 3 historias destacadas (la última con el flyer y el texto requerido)
+ * - 7 publicaciones exclusivas de GALLETAS NAVIDEÑAS especiales por unidad
+ * - 3 historias destacadas
  * - 5 seguidos específicos: Tibisay List, Felipe Villamizar, Rufa María, Tobby Ramón, Saúl Henríquez
  * - 50 seguidores ficticios de niños y padres clientes
  */
@@ -92,7 +93,7 @@ const followersData = [
   { handle: "david_chips_fans", name: "Club de Fans David-Chips 🍪", avatar: "assets/logo.webp" }
 ];
 
-// 3. DATOS DE LAS 7 PUBLICACIONES (Con Flyer oficial y sin mención de cajas)
+// 3. LAS 7 PUBLICACIONES: 100% GALLETAS NAVIDEÑAS (SIN PERSONAS)
 const postsData = [
   {
     id: 1,
@@ -137,12 +138,12 @@ const postsData = [
   },
   {
     id: 2,
-    img: "https://images.unsplash.com/photo-1576715159532-32eb4490f140?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_estrellas.jpg",
     badge: null,
     likes: 98420,
     liked: false,
     time: "HACE 1 DÍA",
-    caption: "Salieron calientitas del horno las estrellas nevadas especiales con glaseado de vainilla 🌟❄️ ¿A quién le gustaría una?",
+    caption: "Salieron calientitas del horno las estrellas nevadas especiales con glaseado y chispas 🌟❄️ Galletas individuales para endulzar el recreo.",
     comments: [
       {
         user: "lucas_aventuras",
@@ -160,17 +161,17 @@ const postsData = [
   },
   {
     id: 3,
-    img: "https://images.unsplash.com/photo-1543255006-d6395b6f1171?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_jengibre.jpg",
     badge: null,
     likes: 112300,
     liked: false,
     time: "HACE 3 DÍAS",
-    caption: "¡Los hombres de jengibre ya tienen sus botones de caramelo listos para la fiesta! 🕺🍪 Galletas especiales por unidad recién salidas.",
+    caption: "¡Los muñequitos de jengibre navideños recién horneados! 🕺🍪 Cada galleta especial decorada a mano con botones dulces.",
     comments: [
       {
         user: "nico_gamer_pro",
         avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
-        text: "El detalle de la bufanda roja quedó épico amigo 🤩",
+        text: "El detalle de la carita sonriente quedó épico amigo 🤩",
         time: "2d"
       },
       {
@@ -183,17 +184,17 @@ const postsData = [
   },
   {
     id: 4,
-    img: "https://images.unsplash.com/photo-1512485800893-b08ec1ea59b1?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_arbolito.jpg",
     badge: null,
     likes: 87910,
     liked: false,
     time: "HACE 5 DÍAS",
-    caption: "En plena producción con los arbolitos de navidad decorados con chispas 🎄✨ Cada unidad hecha con mucha paciencia y amor.",
+    caption: "Bandeja festiva con arbolitos y figuras navideñas con chispas 🎄✨ Horneadas para la gran venta del Monseñor Castro.",
     comments: [
       {
         user: "dani_navidad",
         avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80",
-        text: "¡Qué paciencia para decorarlos todos! Están hermosos 🎄",
+        text: "¡Qué hermosas quedaron decoradas! 🎄",
         time: "4d"
       },
       {
@@ -206,12 +207,12 @@ const postsData = [
   },
   {
     id: 5,
-    img: "https://images.unsplash.com/photo-1545696968-1a5245650b36?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_chocolate.jpg",
     badge: null,
     likes: 104500,
     liked: false,
     time: "HACE 1 SEMANA",
-    caption: "Galletas especiales individuales de David-Chips preparadas para sorprender a amigos y profesores en el colegio 🎅✨",
+    caption: "Galletas especiales de chocolate navideño y chispas crujientes 🍫 Galletas únicas a solo 500 Bs. por unidad.",
     comments: [
       {
         user: "papa_de_valen",
@@ -229,29 +230,29 @@ const postsData = [
   },
   {
     id: 6,
-    img: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_decorada.jpg",
     badge: null,
     likes: 93200,
     liked: false,
     time: "HACE 2 SEMANAS",
-    caption: "Probando la receta especial de chocolate navideño y chispas 🍫 ¡Quedaron súper suaves y con el toque crujiente perfecto!",
+    caption: "Corazones y figuras navideñas con glaseado real y detalles artesanales ❤️🎄 Perfectas para regalar a amigos o profesores.",
     comments: [
       {
         user: "pedrito_choc",
         avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
-        text: "¡Chocolate y navidad es la mejor combinación del mundo! 🍫🤤",
+        text: "¡La decoración está nivel chef profesional David! 🤤",
         time: "1sem"
       }
     ]
   },
   {
     id: 7,
-    img: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_navidad.jpg",
     badge: null,
     likes: 141200,
     liked: false,
     time: "HACE 3 SEMANAS",
-    caption: "¡Así empezó el taller de galletas de este año! Moldes navideños, harina fresca y muchas ganas de endulzar la navidad de todos. ❤️🍪 Gracias por su apoyo.",
+    caption: "¡Taller navideño de David-Chips a toda marcha! Horneando las galletas más ricas para el colegio Monseñor Castro. ❤️🍪",
     comments: [
       {
         user: "abuela_teresa",
@@ -269,16 +270,16 @@ const postsData = [
   }
 ];
 
-// 4. HISTORIAS DESTACADAS (Con el Flyer en la 3ra historia y el texto obligatorio)
+// 4. HISTORIAS DESTACADAS (Con el Flyer en la 3ra historia y fotos de galletas)
 const storiesData = [
   {
     title: "Especiales 🍪",
-    img: "https://images.unsplash.com/photo-1543255006-d6395b6f1171?w=800&auto=format&fit=crop&q=80",
+    img: "assets/cookies/galleta_jengibre.jpg",
     text: "🍪 ¡Galletas especiales por unidad horneadas artesanalmente con amor!"
   },
   {
-    title: "Clientes 🌟",
-    img: "https://images.unsplash.com/photo-1576715159532-32eb4490f140?w=800&auto=format&fit=crop&q=80",
+    title: "Favoritas 🌟",
+    img: "assets/cookies/galleta_estrellas.jpg",
     text: "⭐ Más de 500 niños y familias felices degustando nuestras galletitas. ¡Gracias por el cariño!"
   },
   {
@@ -309,7 +310,7 @@ function renderPosts() {
 
     card.innerHTML = `
       ${badgeHTML}
-      <img src="${post.img}" alt="David-Chips Galleta" loading="lazy">
+      <img src="${post.img}" alt="David-Chips Galleta Navideña" loading="lazy">
       <div class="post-overlay">
         <span class="overlay-stat">
           ❤️ ${formatNumber(post.likes)}
