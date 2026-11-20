@@ -133,7 +133,7 @@ const postsData = [
         user: "rufa_maria",
         verified: false,
         avatar: "assets/avatars/rufa_avatar.jpg",
-        text: "¡Guau! 🐾👩‍🍳 (Rufa atenta y lista para cuidar que ninguna galleta se pase de horno)",
+        text: "¡Guau guau hermanito David! 🐾❤️ Aquí estoy bien atenta en la cocina cuidando todas las bandejas para que te queden perfectas. ¡Te amo mucho hermanito! 🍪👩‍🍳",
         time: "40m"
       },
       {
@@ -200,7 +200,7 @@ const postsData = [
         user: "rufa_maria",
         verified: false,
         avatar: "assets/avatars/rufa_avatar.jpg",
-        text: "¡Guau guau! 🐾 (Rufa aprobando el trabajo de su hermanito Ramón)",
+        text: "¡Guau guau! 🐾 Hermanito David, mira qué bien lo hace Ramón de ayudante #2, ¡pero acuérdate que yo soy tu ayudante #1 favorita! Te amo mucho hermanito ❤️🐶🍪",
         time: "50m"
       },
       {
@@ -306,6 +306,13 @@ const postsData = [
         time: "45m"
       },
       {
+        user: "rufa_maria",
+        verified: false,
+        avatar: "assets/avatars/rufa_avatar.jpg",
+        text: "¡Guau guau! 🐾 ¡Vamos con todo este 8 de diciembre hermanito David! Yo cuidaré todas tus galletitas en el colegio ❤️🍪",
+        time: "35m"
+      },
+      {
         user: "valen_navidad",
         verified: false,
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
@@ -387,7 +394,7 @@ const postsData = [
         user: "rufa_maria",
         verified: false,
         avatar: "assets/avatars/rufa_avatar.jpg",
-        text: "¡Guau! 🐾 (Rufa sentadita con su carita tierna cuidando las galletitas en la mesa)",
+        text: "¡Guau guau hermanito David! 🐾 Esos muñequitos de jengibre te quedaron hermosos y huelen riquísimo. ¡El mejor repostero es mi hermanito! ❤️🍪",
         time: "2d"
       },
       {
