@@ -18,27 +18,27 @@ const VERIFIED_BADGE_SVG = `
 const followingData = [
   {
     handle: "tibisay_list",
-    name: "Tibisay List (Mamá de David) ❤️",
+    name: "Tibisay List",
     avatar: "assets/avatars/tibby_avatar.jpg"
   },
   {
     handle: "felipe_villamizar",
-    name: "Felipe Villamizar (Papá de David) 👨",
+    name: "Felipe Villamizar",
     avatar: "assets/avatars/felipe_avatar.jpg"
   },
   {
     handle: "rufa_maria",
-    name: "Rufa María 🐾 (Ayudante #1 de Cocina)",
+    name: "Ruffa",
     avatar: "assets/avatars/rufa_avatar.jpg"
   },
   {
     handle: "tobby_ramon",
-    name: "Tobby Ramón 🐶 (Ayudante #2 de Cocina)",
+    name: "Tobby Ramón",
     avatar: "assets/avatars/tobby_avatar.jpg"
   },
   {
     handle: "sau_henriquez",
-    name: "Saulimar Henríquez 🌟",
+    name: "Saulimar Henríquez",
     avatar: "assets/avatars/saulimar_avatar.jpg"
   }
 ];
