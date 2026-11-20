@@ -1,49 +1,136 @@
 /**
- * Script para el perfil de Instagram de @emprededavid
- * Incluye datos de las 7 publicaciones, comentarios de niños/clientes,
- * historias destacadas interactivas y botones funcionales.
+ * Script interactivo para el Instagram Dark Mode de @emprededavid
+ * Incluye:
+ * - Logo oficial David-Chips
+ * - Flyer oficial con precio (500 Bs.) y fecha (8 de diciembre)
+ * - 7 publicaciones con galletas navideñas especiales por unidad (sin mención de cajas)
+ * - 3 historias destacadas (la última con el flyer y el texto requerido)
+ * - 5 seguidos específicos: Tibisay List, Felipe Villamizar, Rufa María, Tobby Ramón, Saúl Henríquez
+ * - 50 seguidores ficticios de niños y padres clientes
  */
 
-// 1. Datos de las 7 publicaciones de galletas navideñas
+// 1. LOS 5 SEGUIDOS EXACTOS SOLICITADOS
+const followingData = [
+  {
+    handle: "tibisay_list",
+    name: "Tibisay List",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80"
+  },
+  {
+    handle: "felipe_villamizar",
+    name: "Felipe Villamizar",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&auto=format&fit=crop&q=80"
+  },
+  {
+    handle: "rufa_maria",
+    name: "Rufa María",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80"
+  },
+  {
+    handle: "tobby_ramon",
+    name: "Tobby Ramón",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+  },
+  {
+    handle: "sau_henriquez",
+    name: "Saúl Henríquez",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+  }
+];
+
+// 2. 50 SEGUIDORES FICTICIOS (NIÑOS, COMPAÑEROS Y PADRES CLIENTES)
+const followersData = [
+  { handle: "mateo_galletitas", name: "Mateo Gómez (Compañero 4to A)", avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" },
+  { handle: "valen_navidad", name: "Valentina Ruiz 🎄", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" },
+  { handle: "sebas_crack23", name: "Sebas Crack ⚽", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" },
+  { handle: "profe_carolina", name: "Carolina Mendoza (Profe Primaria)", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "lucas_aventuras", name: "Lucas Martínez", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "mama_de_santi", name: "Carmen Salazar (Mamá de Santi)", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "nico_gamer_pro", name: "Nicolás Gamer 🎮", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+  { handle: "camila_sweet", name: "Camila Galletas Fan", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" },
+  { handle: "papa_de_valen", name: "Roberto Ruiz (Cliente Fiel)", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "ana_dulces", name: "Anita Castillo 🌟", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=80" },
+  { handle: "dani_navidad", name: "Daniela Santos", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80" },
+  { handle: "pedrito_choc", name: "Pedro González 🍫", avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" },
+  { handle: "abuela_teresa", name: "Teresa Rivas ❤️", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "samuel_dibujos", name: "Sami Dibujante 🎨", avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" },
+  { handle: "claudia_mama", name: "Claudia Fernández (Mamá de Sofi)", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" },
+  { handle: "matias_skate", name: "Matías Skate 🛹", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "sofi_cookies", name: "Sofía Pérez 🍪", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" },
+  { handle: "familia_morales", name: "Familia Morales Castro", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "diego_futbolero", name: "Diego 10 ⚽", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+  { handle: "laura_estrellas", name: "Laura Navideña ⭐", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" },
+  { handle: "profe_andres", name: "Andrés Silva (Educación Física)", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "gabriel_chips", name: "Gabo Fan de Galletas", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" },
+  { handle: "mama_de_carlitos", name: "Mariana López", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "esteban_robot", name: "Esteban Tech 🤖", avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" },
+  { handle: "isabella_reina", name: "Isa Dulzuras", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=80" },
+  { handle: "tio_alberto", name: "Alberto Chips Fan", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "julian_cole", name: "Julián Compañero 5to", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+  { handle: "valeria_music", name: "Vale Canto 🎵", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" },
+  { handle: "sandra_postres", name: "Sandra Repostería Fan", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "juanpi_lego", name: "Juanpi Legos 🧱", avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" },
+  { handle: "lucia_navidad", name: "Lucía Santos 🔔", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" },
+  { handle: "martin_rider", name: "Martín Bici 🚲", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "mama_de_andres", name: "Beatriz Paredes", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "franco_danza", name: "Franco 🌟", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" },
+  { handle: "elena_dulces", name: "Elena Navidad", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=80" },
+  { handle: "pablo_chess", name: "Pablo Ajedrez ♟️", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+  { handle: "ximena_art", name: "Xime Pinturas 🎨", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" },
+  { handle: "papa_de_tomas", name: "Tomás Padre (Cliente)", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "joaquin_super", name: "Joaquín Campeón", avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" },
+  { handle: "regina_cookies", name: "Regina Galletitas 💖", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" },
+  { handle: "bruno_biker", name: "Bruno Amigo Monseñor", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "monica_vecina", name: "Mónica Vecina Dulce", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "sammy_galleta", name: "Sammy Lover Cookies", avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" },
+  { handle: "cristian_monseñor", name: "Cristian Alumno 6to", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" },
+  { handle: "patricia_mama", name: "Patricia (Mamá de Mateo)", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" },
+  { handle: "rodrigo_games", name: "Rodrigo Amigo", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+  { handle: "catalina_navidad", name: "Cata Sonrisas 😊", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=80" },
+  { handle: "profe_javier", name: "Javier Castro (Profesor Música)", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" },
+  { handle: "maria_fernanda", name: "Mafer Amiga Cole", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" },
+  { handle: "david_chips_fans", name: "Club de Fans David-Chips 🍪", avatar: "assets/logo.webp" }
+];
+
+// 3. DATOS DE LAS 7 PUBLICACIONES (Con Flyer oficial y sin mención de cajas)
 const postsData = [
   {
     id: 1,
-    // La publicación estrella y más reciente con el anuncio oficial obligatorio
-    img: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&auto=format&fit=crop&q=80",
+    img: "assets/flyer.jpg",
     badge: "📌 ¡ANUNCIO OFICIAL!",
     likes: 125430,
     liked: false,
     time: "HACE 2 HORAS",
-    caption: "🎄✨ ¡GRAN NOTICIA PARA TODOS NUESTROS AMIGOS Y CLIENTES! ✨🎄\n\nLas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Tendremos las favoritas de siempre y nuevos muñequitos de jengibre con chispas de colores. ¡Vengan temprano antes de que se acaben! 🍪🎅🎁",
+    caption: "🎄✨ ¡DAVID-CHIPS: El sabor que te saca una sonrisa! ✨🎄\n\nlas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Ven por tus galletas especiales por unidad a solo 500 Bs. ¡Las galletitas más frescas y ricas para toda la familia! 🍪🎅🎁",
     comments: [
       {
         user: "mateo_galletitas",
         avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
-        text: "¡David, el año pasado las de muñeco de nieve estaban insuperables! ¡De primero en la fila en el Monseñor Castro este 8 de diciembre! 🏃‍♂️🍪",
+        text: "¡David, el año pasado las galletas estaban insuperables! ¡De primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
         time: "1h"
       },
       {
         user: "valen_navidad",
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi mamá ya me dio permiso para comprar la caja grande de 12 galletas! 😍🎅 ¡Qué emoción!",
+        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
         time: "1h"
       },
       {
         user: "sebas_crack23",
         avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80",
-        text: "¡Guárdame 3 de árbol de navidad con chispas David! Eres el mejor chef del colegio 🔥🍪",
+        text: "¡Guárdame una especial de árbol de navidad con chispas David! Eres el mejor chef del colegio 🔥🍪",
         time: "45m"
       },
       {
         user: "profe_carolina",
         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80",
-        text: "¡Todo el colegio Monseñor Castro está orgulloso de tu talento David! Ya aparté mi pedido para la sala de profesores 👏❤️",
+        text: "¡Todo el colegio Monseñor Castro está orgulloso de tu talento David! Ya aparté mi galleta para el recreo 👏❤️",
         time: "30m"
       },
       {
         user: "camila_sweet",
         avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
-        text: "¡Las mejores galletas navideñas del mundo! No me lo pierdo por nada ✨",
+        text: "¡Las mejores galletas navideñas del mundo! No me lo pierdo por nada este 8 de diciembre ✨",
         time: "15m"
       }
     ]
@@ -55,7 +142,7 @@ const postsData = [
     likes: 98420,
     liked: false,
     time: "HACE 1 DÍA",
-    caption: "Salieron calientitas del horno las estrellas nevadas con glaseado de vainilla 🌟❄️ ¿A quién le gustaría una?",
+    caption: "Salieron calientitas del horno las estrellas nevadas especiales con glaseado de vainilla 🌟❄️ ¿A quién le gustaría una?",
     comments: [
       {
         user: "lucas_aventuras",
@@ -66,7 +153,7 @@ const postsData = [
       {
         user: "mama_de_santi",
         avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
-        text: "Qué delicia David, la presentación está impecable como siempre. ¡Felicitaciones!",
+        text: "Qué delicia David, cada galleta está impecable como siempre. ¡Felicitaciones!",
         time: "18h"
       }
     ]
@@ -78,7 +165,7 @@ const postsData = [
     likes: 112300,
     liked: false,
     time: "HACE 3 DÍAS",
-    caption: "¡Los hombres de jengibre ya tienen sus botones de caramelo listos para la fiesta! 🕺🍪 Listos para empacar.",
+    caption: "¡Los hombres de jengibre ya tienen sus botones de caramelo listos para la fiesta! 🕺🍪 Galletas especiales por unidad recién salidas.",
     comments: [
       {
         user: "nico_gamer_pro",
@@ -101,7 +188,7 @@ const postsData = [
     likes: 87910,
     liked: false,
     time: "HACE 5 DÍAS",
-    caption: "En plena producción con los arbolitos de navidad con chispas de colores 🎄✨ ¡Hacer galletas es mi parte favorita de la Navidad!",
+    caption: "En plena producción con los arbolitos de navidad decorados con chispas 🎄✨ Cada unidad hecha con mucha paciencia y amor.",
     comments: [
       {
         user: "dani_navidad",
@@ -110,9 +197,9 @@ const postsData = [
         time: "4d"
       },
       {
-        user: "claudia_reposteria",
+        user: "claudia_mama",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-        text: "Un gran repostero en potencia, ¡mucho éxito con la venta!",
+        text: "Un gran repostero en potencia, ¡mucho éxito con la venta este 8 de diciembre!",
         time: "3d"
       }
     ]
@@ -124,18 +211,18 @@ const postsData = [
     likes: 104500,
     liked: false,
     time: "HACE 1 SEMANA",
-    caption: "¡Cajas navideñas listas para regalar a amigos, profesores y familia! 🎁 Cada caja lleva una sorpresa dulce adentro.",
+    caption: "Galletas especiales individuales de David-Chips preparadas para sorprender a amigos y profesores en el colegio 🎅✨",
     comments: [
       {
-        user: "familia_rodriguez",
+        user: "papa_de_valen",
         avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
-        text: "¡Apartamos 4 cajas para nuestros regalos familiares! 🎁🙌",
+        text: "¡Excelente iniciativa para el colegio Monseñor Castro! 500 Bs. es un precio súper accesible 👏",
         time: "6d"
       },
       {
-        user: "isa_galleta",
+        user: "sofi_cookies",
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡El lazo rojo les da el toque perfecto!",
+        text: "¡Quiero una de cada personaje! 😍",
         time: "5d"
       }
     ]
@@ -147,7 +234,7 @@ const postsData = [
     likes: 93200,
     liked: false,
     time: "HACE 2 SEMANAS",
-    caption: "Probando la receta secreta de chocolate navideño y malvaviscos 🍫 ¡Quedaron súper suaves y crujientes por fuera!",
+    caption: "Probando la receta especial de chocolate navideño y chispas 🍫 ¡Quedaron súper suaves y con el toque crujiente perfecto!",
     comments: [
       {
         user: "pedrito_choc",
@@ -164,7 +251,7 @@ const postsData = [
     likes: 141200,
     liked: false,
     time: "HACE 3 SEMANAS",
-    caption: "¡Así empezó el taller de galletas de este año! Harina, moldes navideños y muchas ganas de endulzar la navidad de todos. ❤️🍪 Gracias por su apoyo constante.",
+    caption: "¡Así empezó el taller de galletas de este año! Moldes navideños, harina fresca y muchas ganas de endulzar la navidad de todos. ❤️🍪 Gracias por su apoyo.",
     comments: [
       {
         user: "abuela_teresa",
@@ -173,8 +260,8 @@ const postsData = [
         time: "2sem"
       },
       {
-        user: "amigos_del_cole",
-        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80",
+        user: "matias_skate",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
         text: "¡Crack David! Todos tus compañeros te apoyamos siempre 🚀",
         time: "2sem"
       }
@@ -182,23 +269,22 @@ const postsData = [
   }
 ];
 
-// 2. Datos de las Historias Destacadas (3 Highlights)
+// 4. HISTORIAS DESTACADAS (Con el Flyer en la 3ra historia y el texto obligatorio)
 const storiesData = [
   {
-    title: "Recetas 🍪",
+    title: "Especiales 🍪",
     img: "https://images.unsplash.com/photo-1543255006-d6395b6f1171?w=800&auto=format&fit=crop&q=80",
-    text: "🍪 ¡Recetas 100% artesanales con jengibre de primera calidad, canela, mantequilla y mucho amor navideño!"
+    text: "🍪 ¡Galletas especiales por unidad horneadas artesanalmente con amor!"
   },
   {
-    title: "Clientes Felices 🌟",
+    title: "Clientes 🌟",
     img: "https://images.unsplash.com/photo-1576715159532-32eb4490f140?w=800&auto=format&fit=crop&q=80",
-    text: "⭐ Más de 500 niños y familias felices degustando nuestras galletas en cada temporada. ¡Gracias a todos!"
+    text: "⭐ Más de 500 niños y familias felices degustando nuestras galletitas. ¡Gracias por el cariño!"
   },
   {
-    // La 3ra historia destacada con el mensaje oficial solicitado
     title: "¡8 de Diciembre! 🏫",
-    img: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&auto=format&fit=crop&q=80",
-    text: "🚨 <strong>¡ATENCIÓN!</strong><br><br>las nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan 🍪🎅🎁"
+    img: "assets/flyer.jpg",
+    text: "🚨 <strong>¡GRAN NOTICIA OFICIAL!</strong><br><br>las nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan 🍪🎅🎁<br><br><strong>Precio: 500 Bs. por unidad</strong>"
   }
 ];
 
@@ -223,7 +309,7 @@ function renderPosts() {
 
     card.innerHTML = `
       ${badgeHTML}
-      <img src="${post.img}" alt="Galleta Navideña" loading="lazy">
+      <img src="${post.img}" alt="David-Chips Galleta" loading="lazy">
       <div class="post-overlay">
         <span class="overlay-stat">
           ❤️ ${formatNumber(post.likes)}
@@ -238,18 +324,13 @@ function renderPosts() {
   });
 }
 
-// Formatear números estilo Instagram (ej: 125.4k)
 function formatNumber(num) {
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + "M";
-  }
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + "k";
-  }
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+  if (num >= 1000) return (num / 1000).toFixed(1) + "k";
   return num;
 }
 
-// Abrir modal de una publicación específica
+// Modal de publicación individual
 function openPostModal(id) {
   currentModalPostId = id;
   const post = postsData.find(p => p.id === id);
@@ -266,18 +347,15 @@ function openPostModal(id) {
   likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
   postTime.innerText = post.time;
 
-  // Actualizar estado del botón Me Gusta
   if (post.liked) {
     likeBtn.classList.add("liked");
   } else {
     likeBtn.classList.remove("liked");
   }
 
-  // Renderizar descripción del autor + comentarios
   commentsArea.innerHTML = `
-    <!-- Fila de la descripción del autor -->
     <div class="comment-row caption-row">
-      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100&auto=format&fit=crop&q=80" alt="David" class="comment-avatar">
+      <img src="assets/logo.webp" alt="David-Chips" class="comment-avatar">
       <div class="comment-body">
         <span class="comment-author">emprededavid</span>
         <span class="comment-text">${post.caption.replace(/\n/g, '<br>')}</span>
@@ -286,7 +364,6 @@ function openPostModal(id) {
     </div>
   `;
 
-  // Añadir los comentarios de niños/clientes
   post.comments.forEach(c => {
     const row = document.createElement("div");
     row.className = "comment-row";
@@ -305,7 +382,6 @@ function openPostModal(id) {
   document.body.style.overflow = "hidden";
 }
 
-// Cerrar modal de publicación
 function closePostModal(e) {
   if (e.target.id === "postModal") {
     closePostModalDirect();
@@ -319,7 +395,6 @@ function closePostModalDirect() {
   currentModalPostId = null;
 }
 
-// Dar / Quitar Like dentro del modal
 function toggleModalLike() {
   if (!currentModalPostId) return;
   const post = postsData.find(p => p.id === currentModalPostId);
@@ -338,15 +413,13 @@ function toggleModalLike() {
   }
 
   likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
-  renderPosts(); // actualizar grid
+  renderPosts();
 }
 
-// Enfocar caja de comentario
 function focusCommentInput() {
   document.getElementById("newCommentInput").focus();
 }
 
-// Añadir nuevo comentario interactivo
 function addCustomComment(e) {
   e.preventDefault();
   const input = document.getElementById("newCommentInput");
@@ -357,7 +430,7 @@ function addCustomComment(e) {
   if (!post) return;
 
   const newComment = {
-    user: "pequeño_cliente",
+    user: "amigo_cliente",
     avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80",
     text: text,
     time: "Justo ahora"
@@ -366,7 +439,6 @@ function addCustomComment(e) {
   post.comments.push(newComment);
   input.value = "";
 
-  // Añadir visualmente al modal
   const commentsArea = document.getElementById("modalCommentsArea");
   const row = document.createElement("div");
   row.className = "comment-row";
@@ -381,11 +453,10 @@ function addCustomComment(e) {
   commentsArea.appendChild(row);
   commentsArea.scrollTop = commentsArea.scrollHeight;
 
-  renderPosts(); // actualizar contador en grid
+  renderPosts();
   showToast("¡Comentario publicado con éxito! 🍪");
 }
 
-// Botón de Seguir / Dejar de seguir
 function toggleFollow() {
   isFollowing = !isFollowing;
   const followBtn = document.getElementById("followBtn");
@@ -407,7 +478,6 @@ function toggleFollow() {
   }
 }
 
-// Compartir perfil / Copiar enlace
 function copyProfileLink() {
   const dummy = document.createElement("input");
   dummy.value = window.location.href;
@@ -418,7 +488,6 @@ function copyProfileLink() {
   showToast("¡Enlace del perfil copiado al portapapeles! 📋");
 }
 
-// Toast de notificación
 function showToast(message) {
   const toast = document.getElementById("toastMessage");
   toast.innerText = message;
@@ -429,7 +498,7 @@ function showToast(message) {
 }
 
 // ==========================================
-// VISOR DE HISTORIAS DESTACADAS (STORY VIEWER)
+// VISOR DE HISTORIAS DESTACADAS
 // ==========================================
 function openStoryHighlight(index) {
   const story = storiesData[index];
@@ -445,7 +514,6 @@ function openStoryHighlight(index) {
   viewer.classList.add("active");
   document.body.style.overflow = "hidden";
 
-  // Animación de la barra de progreso
   progressBar.style.width = "0%";
   let progress = 0;
   clearInterval(storyTimer);
@@ -455,14 +523,13 @@ function openStoryHighlight(index) {
     progressBar.style.width = `${progress}%`;
     if (progress >= 100) {
       clearInterval(storyTimer);
-      // Si hay siguiente historia la abre, sino cierra
       if (index + 1 < storiesData.length) {
         openStoryHighlight(index + 1);
       } else {
         closeStoryDirect();
       }
     }
-  }, 100); // 5 segundos aprox
+  }, 100);
 }
 
 function closeStory(e) {
@@ -478,16 +545,112 @@ function closeStoryDirect() {
   clearInterval(storyTimer);
 }
 
-// Cerrar modales con tecla ESC
+// ==========================================
+// MODAL DE SEGUIDORES (50 PERFILES)
+// ==========================================
+function openFollowersModal() {
+  const modal = document.getElementById("followersModal");
+  renderFollowersList(followersData);
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function renderFollowersList(list) {
+  const container = document.getElementById("followersListContainer");
+  container.innerHTML = "";
+
+  list.forEach(user => {
+    const row = document.createElement("div");
+    row.className = "user-item-row";
+    row.innerHTML = `
+      <div class="user-item-left">
+        <img src="${user.avatar}" alt="${user.handle}" class="user-item-avatar">
+        <div class="user-item-names">
+          <span class="user-item-handle">${user.handle}</span>
+          <span class="user-item-fullname">${user.name}</span>
+        </div>
+      </div>
+      <button class="user-item-btn" onclick="toggleUserFollowBtn(this)">Eliminar</button>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function filterFollowers() {
+  const query = document.getElementById("searchFollowersInput").value.toLowerCase();
+  const filtered = followersData.filter(u =>
+    u.handle.toLowerCase().includes(query) || u.name.toLowerCase().includes(query)
+  );
+  renderFollowersList(filtered);
+}
+
+// ==========================================
+// MODAL DE SEGUIDOS (LOS 5 EXACTOS)
+// ==========================================
+function openFollowingModal() {
+  const modal = document.getElementById("followingModal");
+  const container = document.getElementById("followingListContainer");
+  container.innerHTML = "";
+
+  followingData.forEach(user => {
+    const row = document.createElement("div");
+    row.className = "user-item-row";
+    row.innerHTML = `
+      <div class="user-item-left">
+        <img src="${user.avatar}" alt="${user.handle}" class="user-item-avatar">
+        <div class="user-item-names">
+          <span class="user-item-handle">${user.handle}</span>
+          <span class="user-item-fullname">${user.name}</span>
+        </div>
+      </div>
+      <button class="user-item-btn following-btn" onclick="toggleFollowingUserBtn(this)">Siguiendo</button>
+    `;
+    container.appendChild(row);
+  });
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function toggleFollowingUserBtn(btn) {
+  if (btn.innerText === "Siguiendo") {
+    btn.innerText = "Seguir";
+    btn.classList.remove("following-btn");
+  } else {
+    btn.innerText = "Siguiendo";
+    btn.classList.add("following-btn");
+  }
+}
+
+function toggleUserFollowBtn(btn) {
+  if (btn.innerText === "Eliminar") {
+    btn.innerText = "Eliminado";
+    btn.style.opacity = "0.5";
+  }
+}
+
+function closeListModal(e, modalId) {
+  if (e.target.id === modalId) {
+    closeListModalDirect(modalId);
+  }
+}
+
+function closeListModalDirect(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+// Tecla ESC para cerrar cualquier modal
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closePostModalDirect();
     closeStoryDirect();
+    closeListModalDirect("followersModal");
+    closeListModalDirect("followingModal");
   }
 });
 
-// Cargar posts al iniciar
 document.addEventListener("DOMContentLoaded", () => {
   renderPosts();
 });
-

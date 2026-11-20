@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David 🍪 (@emprededavid) • Fotos y videos de Instagram</title>
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+  <title>David-Chips 🍪 (@emprededavid) • Instagram</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Grandista&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-mode">
 
-  <!-- Barra de navegación superior -->
+  <!-- Barra de navegación superior estilo Instagram Dark Mode -->
   <header class="instagram-nav">
     <div class="nav-container">
       <div class="nav-logo">
@@ -31,11 +31,11 @@
         <button class="nav-btn" title="Explorar">
           <svg aria-label="Explorar" fill="currentColor" height="24" viewBox="0 0 24 24" width="24"><polygon fill="none" points="13.94 9.5 10.06 14.5 13.94 9.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon><circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="2"></circle><polygon fill="currentColor" points="13.94 9.5 10.06 14.5 13.94 9.5"></polygon></svg>
         </button>
-        <button class="nav-btn" title="Actividad">
+        <button class="nav-btn" title="Notificaciones">
           <svg aria-label="Notificaciones" fill="currentColor" height="24" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.212z"></path></svg>
         </button>
         <div class="nav-avatar-mini" title="Perfil">
-          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=150&auto=format&fit=crop&q=80" alt="Avatar mini">
+          <img src="assets/logo.webp" alt="David-Chips Avatar">
         </div>
       </div>
     </div>
@@ -46,10 +46,10 @@
 
     <!-- Sección de Información de Perfil -->
     <section class="profile-header">
-      <!-- Foto de Perfil con Anillo de Historia -->
+      <!-- Foto de Perfil Oficial: LOGO DAVID-CHIPS -->
       <div class="avatar-wrapper">
-        <div class="story-ring" onclick="openStoryHighlight(2)" title="Ver última historia">
-          <img class="profile-avatar" src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&auto=format&fit=crop&q=80" alt="David Emprendedor">
+        <div class="story-ring" onclick="openStoryHighlight(2)" title="Ver historia de David-Chips">
+          <img class="profile-avatar" src="assets/logo.webp" alt="David-Chips Logo Oficial">
         </div>
       </div>
 
@@ -70,26 +70,29 @@
           </div>
         </div>
 
-        <!-- Estadísticas (Desktop) -->
+        <!-- Estadísticas (Desktop) con Click para ver Seguidos y Seguidores -->
         <ul class="stats-list desktop-stats">
           <li><strong>7</strong> publicaciones</li>
-          <li><strong id="followersCount">20M</strong> seguidores</li>
-          <li><strong>5</strong> seguidos</li>
+          <li class="stat-clickable" onclick="openFollowersModal()" title="Ver seguidores">
+            <strong id="followersCount">20M</strong> seguidores
+          </li>
+          <li class="stat-clickable" onclick="openFollowingModal()" title="Ver seguidos">
+            <strong>5</strong> seguidos
+          </li>
         </ul>
 
-        <!-- Biografía / Descripción -->
+        <!-- Biografía / Descripción limpia y personalizada -->
         <div class="profile-bio">
-          <h1 class="bio-full-name">David 🍪 | Chef Infantil de Galletas Navideñas 🎄</h1>
-          <div class="bio-tag">Repostero Estrella & Emprendedor 🌟</div>
+          <h1 class="bio-full-name">David-Chips 🍪 | David</h1>
+          <div class="bio-tag">Repostero Infantil & Pequeño Emprendedor 🌟</div>
           <p class="bio-description">
-            ✨ ¡Las mejores galletas navideñas de la ciudad horneadas con magia y amor!<br>
-            🍪 Recetas secretas con chispas, canela y jengibre navideño.<br>
-            🎅 <strong>¡GRAN NOTICIA!:</strong> Venta especial este año en el Colegio Monseñor Castro este 8 de diciembre.<br>
-            ⭐ ¡Apoya a los pequeños emprendedores con un dulce mordisco!
+            ✨ ¡David-Chips! El sabor que te saca una sonrisa 🍪🎄<br>
+            ⭐ Venta exclusiva de galletas especiales por unidad (500 Bs.)<br>
+            ❤️ ¡Horneadas con amor para endulzar tu Navidad!
           </p>
           <div class="bio-link">
             <span>🔗</span>
-            <a href="#posts-grid" class="school-link">colegio-monsenor-castro.com/galletas-david</a>
+            <a href="#posts-grid" class="school-link">colegio-monsenor-castro.com/david-chips</a>
           </div>
         </div>
       </div>
@@ -98,29 +101,33 @@
     <!-- Estadísticas para Celulares / Mobile -->
     <ul class="stats-list mobile-stats">
       <li><strong>7</strong><span>publicaciones</span></li>
-      <li><strong id="followersCountMobile">20M</strong><span>seguidores</span></li>
-      <li><strong>5</strong><span>seguidos</span></li>
+      <li class="stat-clickable" onclick="openFollowersModal()">
+        <strong id="followersCountMobile">20M</strong><span>seguidores</span>
+      </li>
+      <li class="stat-clickable" onclick="openFollowingModal()">
+        <strong>5</strong><span>seguidos</span>
+      </li>
     </ul>
 
     <!-- Historias Destacadas (3 Highlights) -->
     <section class="highlights-section">
       <div class="highlight-item" onclick="openStoryHighlight(0)">
         <div class="highlight-ring">
-          <img src="https://images.unsplash.com/photo-1543255006-d6395b6f1171?w=150&auto=format&fit=crop&q=80" alt="Recetas Secretas">
+          <img src="https://images.unsplash.com/photo-1543255006-d6395b6f1171?w=150&auto=format&fit=crop&q=80" alt="Galletas Especiales">
         </div>
-        <span class="highlight-title">Recetas 🍪</span>
+        <span class="highlight-title">Especiales 🍪</span>
       </div>
 
       <div class="highlight-item" onclick="openStoryHighlight(1)">
         <div class="highlight-ring">
-          <img src="https://images.unsplash.com/photo-1576715159532-32eb4490f140?w=150&auto=format&fit=crop&q=80" alt="Clientes Felices">
+          <img src="https://images.unsplash.com/photo-1576715159532-32eb4490f140?w=150&auto=format&fit=crop&q=80" alt="Clientes">
         </div>
         <span class="highlight-title">Clientes 🌟</span>
       </div>
 
       <div class="highlight-item highlight-special" onclick="openStoryHighlight(2)">
         <div class="highlight-ring special-ring">
-          <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=150&auto=format&fit=crop&q=80" alt="Venta Colegio">
+          <img src="assets/flyer.jpg" alt="Flyer Oficial 8 Dic">
         </div>
         <span class="highlight-title">¡8 Dic! 🏫</span>
       </div>
@@ -144,10 +151,10 @@
 
     <!-- Grid de las 7 Publicaciones -->
     <section class="posts-grid" id="posts-grid">
-      <!-- Los 7 posts se cargan dinámicamente con JS para permitir comentarios y detalles -->
+      <!-- Inyectados con JavaScript -->
     </section>
 
-    <!-- Pie de página estilo Instagram -->
+    <!-- Pie de página estilo Instagram Dark Mode -->
     <footer class="profile-footer">
       <div class="footer-links">
         <a href="#">Información</a>
@@ -158,10 +165,10 @@
         <a href="#">Privacidad</a>
         <a href="#">Condiciones</a>
         <a href="#">Ubicaciones</a>
-        <a href="#">Idioma: Español</a>
+        <a href="#">Español</a>
       </div>
       <div class="footer-copy">
-        © 2026 INSTAGRAM FROM DAVID • EMPRENDEDOR INFANTIL MONSEÑOR CASTRO
+        © 2026 INSTAGRAM FROM DAVID-CHIPS • COLEGIO MONSEÑOR CASTRO
       </div>
     </footer>
 
@@ -174,7 +181,7 @@
     <button class="mob-btn add-btn">➕</button>
     <button class="mob-btn">❤️</button>
     <div class="mob-avatar">
-      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100&auto=format&fit=crop&q=80" alt="perfil">
+      <img src="assets/logo.webp" alt="David-Chips Mini">
     </div>
   </nav>
 
@@ -188,7 +195,7 @@
       <div class="modal-info-col">
         <!-- Encabezado de la foto -->
         <div class="modal-author-header">
-          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100&auto=format&fit=crop&q=80" alt="David" class="modal-avatar">
+          <img src="assets/logo.webp" alt="David-Chips" class="modal-avatar">
           <div class="modal-user-info">
             <span class="modal-username">emprededavid</span>
             <span class="verified-badge-small">✓</span>
@@ -198,9 +205,7 @@
         </div>
 
         <!-- Lista de Comentarios y Descripción -->
-        <div class="modal-comments-area" id="modalCommentsArea">
-          <!-- Se inyecta con JavaScript -->
-        </div>
+        <div class="modal-comments-area" id="modalCommentsArea"></div>
 
         <!-- Acciones del Modal (Like, Guardar, etc.) -->
         <div class="modal-bottom-actions">
@@ -218,7 +223,7 @@
           <div class="modal-likes-count" id="modalLikesDisplay">85,420 Me gusta</div>
           <div class="modal-timestamp" id="modalPostTime">HACE 2 DÍAS</div>
 
-          <!-- Caja de escribir comentario ficticio -->
+          <!-- Caja para escribir comentario -->
           <form class="modal-comment-input-box" onsubmit="addCustomComment(event)">
             <input type="text" id="newCommentInput" placeholder="Añade un comentario..." autocomplete="off">
             <button type="submit" class="comment-publish-btn">Publicar</button>
@@ -231,25 +236,47 @@
   <!-- Modal Visor de Historias Destacadas (Story Viewer) -->
   <div class="story-viewer-overlay" id="storyViewer" onclick="closeStory(event)">
     <div class="story-frame">
-      <!-- Barra de progreso superior -->
       <div class="story-progress-container">
         <div class="story-progress-bar" id="storyProgressBar"></div>
       </div>
-
-      <!-- Cabecera de la Historia -->
       <div class="story-header">
-        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=80&auto=format&fit=crop&q=80" alt="David" class="story-user-avatar">
+        <img src="assets/logo.webp" alt="David-Chips" class="story-user-avatar">
         <span class="story-username">emprededavid</span>
         <span class="story-time">1h</span>
         <button class="story-close" onclick="closeStoryDirect()">&times;</button>
       </div>
-
-      <!-- Imagen y Texto de la historia -->
       <div class="story-content-body">
         <img id="storyMediaImg" src="" alt="Historia">
-        <div class="story-badge-announcement" id="storyTextBadge">
-          <!-- Mensaje destacado -->
-        </div>
+        <div class="story-badge-announcement" id="storyTextBadge"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de SEGUIDORES (Muestra 50 perfiles de mentirita: niños y padres clientes) -->
+  <div class="list-modal-overlay" id="followersModal" onclick="closeListModal(event, 'followersModal')">
+    <div class="list-modal-box">
+      <div class="list-modal-header">
+        <span class="list-modal-title">Seguidores (50)</span>
+        <button class="list-modal-close" onclick="closeListModalDirect('followersModal')">&times;</button>
+      </div>
+      <div class="list-modal-search">
+        <input type="text" id="searchFollowersInput" oninput="filterFollowers()" placeholder="Buscar seguidor...">
+      </div>
+      <div class="list-modal-body" id="followersListContainer">
+        <!-- 50 perfiles inyectados con JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de SEGUIDOS (Muestra exactamente los 5 solicitados) -->
+  <div class="list-modal-overlay" id="followingModal" onclick="closeListModal(event, 'followingModal')">
+    <div class="list-modal-box">
+      <div class="list-modal-header">
+        <span class="list-modal-title">Seguidos (5)</span>
+        <button class="list-modal-close" onclick="closeListModalDirect('followingModal')">&times;</button>
+      </div>
+      <div class="list-modal-body" id="followingListContainer">
+        <!-- tibisay list, felipe villamizar, rufa maria, tobby ramon, sau henriquez -->
       </div>
     </div>
   </div>
@@ -259,4 +286,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
