@@ -652,9 +652,20 @@ function openPostModal(id) {
   const postTime = document.getElementById("modalPostTime");
   const likeBtn = document.getElementById("modalLikeBtn");
 
+  // Elementos móviles (Screenshot 2)
+  const mobileLikeInlineCount = document.getElementById("modalLikeInlineCount");
+  const mobileCommentInlineCount = document.getElementById("modalCommentInlineCount");
+  const mobilePostCaption = document.getElementById("mobilePostCaption");
+  const viewCommentsLink = document.getElementById("viewCommentsLink");
+
   modalImg.src = post.img;
   likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
   postTime.innerText = post.time;
+
+  if (mobileLikeInlineCount) mobileLikeInlineCount.innerText = formatNumber(post.likes);
+  if (mobileCommentInlineCount) mobileCommentInlineCount.innerText = post.comments.length;
+  if (mobilePostCaption) mobilePostCaption.innerText = " " + post.caption;
+  if (viewCommentsLink) viewCommentsLink.innerText = `Ver los ${post.comments.length} comentarios`;
 
   if (post.liked) {
     likeBtn.classList.add("liked");
@@ -662,6 +673,7 @@ function openPostModal(id) {
     likeBtn.classList.remove("liked");
   }
 
+  // Comentarios en versión de escritorio
   commentsArea.innerHTML = `
     <div class="comment-row caption-row">
       <img src="assets/logo.webp" alt="David-Chips" class="comment-avatar">
@@ -690,8 +702,81 @@ function openPostModal(id) {
     commentsArea.appendChild(row);
   });
 
+  // Renderizar la lista de comentarios en el Bottom Sheet móvil (Screenshot 1)
+  renderSheetComments(post);
+
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
+}
+
+function renderSheetComments(post) {
+  const sheetList = document.getElementById("sheetCommentsList");
+  if (!sheetList) return;
+  sheetList.innerHTML = "";
+
+  post.comments.forEach(c => {
+    const item = document.createElement("div");
+    item.className = "sheet-comment-item";
+    const verifiedBadge = c.verified ? VERIFIED_BADGE_SVG : '';
+    item.innerHTML = `
+      <img src="${c.avatar}" alt="${c.user}" class="sheet-comment-avatar">
+      <div class="sheet-comment-main">
+        <div class="sheet-comment-header-line">
+          <span class="sheet-comment-author">${c.user}</span>
+          ${verifiedBadge}
+          <span class="sheet-comment-time">${c.time}</span>
+        </div>
+        <div class="sheet-comment-text">${c.text}</div>
+        <div class="sheet-comment-actions">
+          <button class="sheet-reply-btn" onclick="replyToUser('${c.user}')">Responder</button>
+        </div>
+      </div>
+      <button class="sheet-heart-btn" onclick="toggleCommentHeart(this)" title="Me gusta">
+        <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+    `;
+    sheetList.appendChild(item);
+  });
+}
+
+function openCommentsSheet() {
+  const sheet = document.getElementById("commentsSheetOverlay");
+  if (sheet) {
+    sheet.classList.add("active");
+  }
+}
+
+function closeCommentsSheet(e) {
+  if (e.target.id === "commentsSheetOverlay") {
+    closeCommentsSheetDirect();
+  }
+}
+
+function closeCommentsSheetDirect() {
+  const sheet = document.getElementById("commentsSheetOverlay");
+  if (sheet) {
+    sheet.classList.remove("active");
+  }
+}
+
+function insertEmoji(emoji) {
+  const input = document.getElementById("newCommentInput");
+  if (input) {
+    input.value += emoji;
+    input.focus();
+  }
+}
+
+function replyToUser(username) {
+  const input = document.getElementById("newCommentInput");
+  if (input) {
+    input.value = `@${username} `;
+    input.focus();
+  }
+}
+
+function toggleCommentHeart(btn) {
+  btn.classList.toggle("liked");
 }
 
 function closePostModal(e) {
@@ -703,6 +788,7 @@ function closePostModal(e) {
 function closePostModalDirect() {
   const modal = document.getElementById("postModal");
   modal.classList.remove("active");
+  closeCommentsSheetDirect();
   document.body.style.overflow = "auto";
   currentModalPostId = null;
 }
@@ -750,6 +836,7 @@ function toggleModalLike() {
 function updateModalLikeDisplay(post) {
   const likeBtn = document.getElementById("modalLikeBtn");
   const likesDisplay = document.getElementById("modalLikesDisplay");
+  const mobileLikeInlineCount = document.getElementById("modalLikeInlineCount");
 
   if (post.liked) {
     likeBtn.classList.add("liked");
@@ -758,17 +845,27 @@ function updateModalLikeDisplay(post) {
   }
 
   likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
+  if (mobileLikeInlineCount) mobileLikeInlineCount.innerText = formatNumber(post.likes);
 }
 
 function focusCommentInput() {
-  document.getElementById("newCommentInput").focus();
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    openCommentsSheet();
+    const input = document.getElementById("newCommentInput");
+    if (input) setTimeout(() => input.focus(), 250);
+  } else {
+    const input = document.getElementById("newCommentInputDesktop");
+    if (input) input.focus();
+  }
 }
 
 // Añadir comentario como "cliente_especial ❤️" con verificación azul (solo en memoria para jugar)
 function addCustomComment(e) {
   e.preventDefault();
-  const input = document.getElementById("newCommentInput");
-  const text = input.value.trim();
+  const inputMobile = document.getElementById("newCommentInput");
+  const inputDesktop = document.getElementById("newCommentInputDesktop");
+  const text = (inputMobile && inputMobile.value.trim()) || (inputDesktop && inputDesktop.value.trim());
   if (!text || !currentModalPostId) return;
 
   const post = postsData.find(p => p.id === currentModalPostId);
@@ -784,23 +881,10 @@ function addCustomComment(e) {
   };
 
   post.comments.push(newComment);
-  input.value = "";
+  if (inputMobile) inputMobile.value = "";
+  if (inputDesktop) inputDesktop.value = "";
 
-  const commentsArea = document.getElementById("modalCommentsArea");
-  const row = document.createElement("div");
-  row.className = "comment-row";
-  row.innerHTML = `
-    <img src="${newComment.avatar}" alt="${newComment.user}" class="comment-avatar">
-    <div class="comment-body">
-      <span class="comment-author">${newComment.user}</span>
-      ${VERIFIED_BADGE_SVG}
-      <span class="comment-text">${newComment.text}</span>
-      <div class="comment-time">${newComment.time}</div>
-    </div>
-  `;
-  commentsArea.appendChild(row);
-  commentsArea.scrollTop = commentsArea.scrollHeight;
-
+  openPostModal(currentModalPostId);
   renderPosts();
   showToast("¡Comentaste como cliente_especial ❤️! (Verificado)");
 }
