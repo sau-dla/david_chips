@@ -2,7 +2,17 @@
  * Script interactivo para el Instagram Dark Mode de @emprededavid
  * 100% Galletas Navideñas (Sin fotos de personas en publicaciones)
  * Caricaturas personalizadas para la familia y mascotas en Seguidos
+ * Comentarios de la familia y de cuentas VERIFICADAS:
+ * (elvis_moya, kleyver_rivero, enyel_eugenio, juan david, alex_flores_, dei_v underwater)
  */
+
+// SVG Oficial de insignia de cuenta verificada de Instagram
+const VERIFIED_BADGE_SVG = `
+  <svg class="comment-verified-icon" aria-label="Verificado" fill="#0095f6" height="13" viewBox="0 0 40 40" width="13" style="display:inline-block; vertical-align:-2px; margin-left:3px; margin-right:4px;">
+    <path d="M19.998 3.094 14.638 0l-5.9 3.094-6.358-.873-.873 6.358L0 14.638l3.094 5.36L0 25.358l.873 6.059 6.358-.873 5.9 3.094 5.36-3.094 5.36 3.094 5.9-3.094 6.358.873.873-6.059L40 25.358l-3.094-5.36L40 14.638l-.873-6.059-6.358.873-5.9-3.094z" fill="#0095f6"></path>
+    <path d="M17.47 28.532 9.548 20.61l3.057-3.057 4.865 4.865 10.93-10.93 3.057 3.057z" fill="#fff"></path>
+  </svg>
+`;
 
 // 1. LOS 5 SEGUIDOS EXACTOS CON SUS CARICATURAS PERSONALIZADAS
 const followingData = [
@@ -87,7 +97,7 @@ const followersData = [
   { handle: "david_chips_fans", name: "Club de Fans David-Chips 🍪", avatar: "assets/logo.webp" }
 ];
 
-// 3. LAS 7 PUBLICACIONES: 100% GALLETAS NAVIDEÑAS (SIN PERSONAS)
+// 3. LAS 7 PUBLICACIONES CON COMENTARIOS DE LA FAMILIA Y ARTISTAS VERIFICADOS
 const postsData = [
   {
     id: 1,
@@ -99,40 +109,60 @@ const postsData = [
     caption: "🎄✨ ¡DAVID-CHIPS: El sabor que te saca una sonrisa! ✨🎄\n\nlas nuevas galletas seran vendidas este año en el colegio monseñor castro este 8 de diciembre no se la pierdan. Ven por tus galletas especiales por unidad a solo 500 Bs. ¡Las galletitas más frescas y ricas para toda la familia! 🍪🎅🎁",
     comments: [
       {
+        user: "dei_v",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+        text: "¡Dímelo David! 🌊 Esas galletas de David-Chips están a otro nivel pa', rompiste con ese flow navideño. Mucho éxito este 8 de diciembre 🔥🍪 #Underwater",
+        time: "45m"
+      },
+      {
+        user: "elvis_moya",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+        text: "¡Hablamos de talento puro! Éxito total David, te vas a quedar sin galletas de lo ricas que se ven 🔥👏",
+        time: "1h"
+      },
+      {
+        user: "kleyver_rivero",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
+        text: "¡Qué nivel mi bro! El 8 de diciembre activo comprando las mías en el colegio Monseñor Castro 🍪🙌 ¡Bendiciones!",
+        time: "1h"
+      },
+      {
         user: "tibisay_list",
+        verified: false,
         avatar: "assets/avatars/tibby_avatar.jpg",
         text: "¡Hijo hermoso, qué orgullo! Esas galletas de David-Chips están hechas con todo tu amor. ¡Te amo! ❤️🍪",
         time: "2h"
       },
       {
         user: "felipe_villamizar",
+        verified: false,
         avatar: "assets/avatars/felipe_avatar.jpg",
         text: "¡Éxito total campeón! Todo el colegio va a disfrutar de tus galletitas este 8 de diciembre 👏🔥",
         time: "1h"
       },
       {
         user: "sau_henriquez",
+        verified: false,
         avatar: "assets/avatars/saulimar_avatar.jpg",
         text: "¡Aparto mis galletitas desde ya David! Eres el repostero estrella de la familia 🌟😋",
         time: "1h"
       },
       {
         user: "mateo_galletitas",
+        verified: false,
         avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
-        text: "¡David, el año pasado las galletas estaban insuperables! ¡De primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
+        text: "¡David, de primero en la fila en el Monseñor Castro este 8 de diciembre con mis 500 Bs! 🏃‍♂️🍪",
         time: "1h"
       },
       {
         user: "valen_navidad",
+        verified: false,
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
+        text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales! 😍🎅",
         time: "45m"
-      },
-      {
-        user: "profe_carolina",
-        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80",
-        text: "¡Todo el colegio Monseñor Castro está orgulloso de tu talento David! Ya aparté mi galleta para el recreo 👏❤️",
-        time: "30m"
       }
     ]
   },
@@ -146,16 +176,32 @@ const postsData = [
     caption: "Salieron calientitas del horno las estrellas nevadas especiales con glaseado y chispas 🌟❄️ Galletas individuales para endulzar el recreo.",
     comments: [
       {
-        user: "lucas_aventuras",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-        text: "¡A mííí! Esas estrellas son mis favoritas de Navidad 😋",
+        user: "enyel_eugenio",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80",
+        text: "¡Esas estrellas nevadas se ven durísimas mi pana! Mucho talento en la cocina 🔥🌟",
         time: "1d"
       },
       {
-        user: "mama_de_santi",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
-        text: "Qué delicia David, cada galleta está impecable como siempre. ¡Felicitaciones!",
+        user: "juan_david",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
+        text: "¡Qué presentación tan profesional! Eres un orgullo David-Chips 🍪👏",
+        time: "20h"
+      },
+      {
+        user: "tobby_ramon",
+        verified: false,
+        avatar: "assets/avatars/tobby_avatar.jpg",
+        text: "¡Guau guau! 🐶🐾 (Tobby vigilando las estrellas con olor a vainilla navideña)",
         time: "18h"
+      },
+      {
+        user: "lucas_aventuras",
+        verified: false,
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+        text: "¡A mííí! Esas estrellas son mis favoritas de Navidad 😋",
+        time: "1d"
       }
     ]
   },
@@ -169,16 +215,32 @@ const postsData = [
     caption: "¡Los muñequitos de jengibre navideños recién horneados! 🕺🍪 Cada galleta especial decorada a mano con botones dulces.",
     comments: [
       {
-        user: "nico_gamer_pro",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
-        text: "El detalle de la carita sonriente quedó épico amigo 🤩",
+        user: "alex_flores_",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80",
+        text: "¡Esos muñequitos de jengibre están legendarios David! La rompiste con los detalles 🍪💯",
         time: "2d"
       },
       {
-        user: "ana_dulces",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=80",
-        text: "¡Huelen a Navidad desde la foto! No veo la hora de que llegue el 8 de diciembre.",
-        time: "1d"
+        user: "dei_v",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+        text: "El verdadero sazón de la navidad 🌊🎄 ¡Mucho respeto para el pequeño gigante de la repostería!",
+        time: "2d"
+      },
+      {
+        user: "rufa_maria",
+        verified: false,
+        avatar: "assets/avatars/rufa_avatar.jpg",
+        text: "¡Guau! 🐾 (Rufa sentadita esperando en la cocina que David termine de decorar)",
+        time: "2d"
+      },
+      {
+        user: "nico_gamer_pro",
+        verified: false,
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
+        text: "El detalle de la carita sonriente quedó épico amigo 🤩",
+        time: "2d"
       }
     ]
   },
@@ -192,16 +254,25 @@ const postsData = [
     caption: "Bandeja festiva con arbolitos y figuras navideñas con chispas 🎄✨ Horneadas para la gran venta del Monseñor Castro.",
     comments: [
       {
-        user: "dani_navidad",
-        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80",
-        text: "¡Qué hermosas quedaron decoradas! 🎄",
+        user: "kleyver_rivero",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
+        text: "¡El detalle del arbolito con chispas está impecable! 🎄🔥 Apoyo total para ti hermanito.",
         time: "4d"
       },
       {
-        user: "claudia_mama",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-        text: "Un gran repostero en potencia, ¡mucho éxito con la venta este 8 de diciembre!",
-        time: "3d"
+        user: "elvis_moya",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+        text: "¡Dios bendiga tu emprendimiento David! Sigue dándole con toda esa dedicación 👏✨",
+        time: "4d"
+      },
+      {
+        user: "tibisay_list",
+        verified: false,
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "¡Qué paciencia y dedicación para colocar cada chispa hijo! Están bellísimas ❤️",
+        time: "4d"
       }
     ]
   },
@@ -215,15 +286,24 @@ const postsData = [
     caption: "Galletas especiales de chocolate navideño y chispas crujientes 🍫 Galletas únicas a solo 500 Bs. por unidad.",
     comments: [
       {
-        user: "papa_de_valen",
+        user: "juan_david",
+        verified: true,
         avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
-        text: "¡Excelente iniciativa para el colegio Monseñor Castro! 500 Bs. es un precio súper accesible 👏",
+        text: "¡Ese chocolate se ve criminal hermano! 🍫🤤 Guárdame un par para el 8 de diciembre sin falta.",
         time: "6d"
       },
       {
-        user: "sofi_cookies",
-        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-        text: "¡Quiero una de cada personaje! 😍",
+        user: "enyel_eugenio",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80",
+        text: "A 500 Bs. por unidad eso es un regalo de navidad David, vas a arrasar en ventas 🚀",
+        time: "6d"
+      },
+      {
+        user: "felipe_villamizar",
+        verified: false,
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "¡Las de chocolate son las mejores! Directo a la cima campeón 👨🔥",
         time: "5d"
       }
     ]
@@ -238,7 +318,22 @@ const postsData = [
     caption: "Corazones y figuras navideñas con glaseado real y detalles artesanales ❤️🎄 Perfectas para regalar a amigos o profesores.",
     comments: [
       {
+        user: "alex_flores_",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80",
+        text: "¡La textura y el glaseado están a la altura de un chef profesional! Mis respetos 🏆",
+        time: "1sem"
+      },
+      {
+        user: "sau_henriquez",
+        verified: false,
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Increíbles las formas David! Siempre sorprendiendo con cada detalle dulce 🥰✨",
+        time: "1sem"
+      },
+      {
         user: "pedrito_choc",
+        verified: false,
         avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80",
         text: "¡La decoración está nivel chef profesional David! 🤤",
         time: "1sem"
@@ -255,15 +350,31 @@ const postsData = [
     caption: "¡Taller navideño de David-Chips a toda marcha! Horneando las galletas más ricas para el colegio Monseñor Castro. ❤️🍪",
     comments: [
       {
-        user: "abuela_teresa",
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
-        text: "¡Mi nieto consentido y trabajador! Te van a quedar deliciosas como siempre ❤️",
+        user: "dei_v",
+        verified: true,
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+        text: "Mucho amor y bendiciones para David-Chips de parte de Dei V 🌊 Los duros con los duros siempre hermano, a romper este 8 de diciembre 🍪🎄",
         time: "2sem"
       },
       {
-        user: "matias_skate",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-        text: "¡Crack David! Todos tus compañeros te apoyamos siempre 🚀",
+        user: "tibisay_list",
+        verified: false,
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "Verte hornear con tanta ilusión llena mi corazón. ¡Eres mi mayor bendición David! 💖",
+        time: "2sem"
+      },
+      {
+        user: "felipe_villamizar",
+        verified: false,
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "El esfuerzo y la disciplina dan frutos hijo. ¡A romperla este 8 de diciembre en el Monseñor Castro! 👊🎄",
+        time: "2sem"
+      },
+      {
+        user: "abuela_teresa",
+        verified: false,
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
+        text: "¡Mi nieto consentido y trabajador! Te van a quedar deliciosas como siempre ❤️",
         time: "2sem"
       }
     ]
@@ -359,6 +470,7 @@ function openPostModal(id) {
       <img src="assets/logo.webp" alt="David-Chips" class="comment-avatar">
       <div class="comment-body">
         <span class="comment-author">emprededavid</span>
+        ${VERIFIED_BADGE_SVG}
         <span class="comment-text">${post.caption.replace(/\n/g, '<br>')}</span>
         <div class="comment-time">${post.time}</div>
       </div>
@@ -368,10 +480,12 @@ function openPostModal(id) {
   post.comments.forEach(c => {
     const row = document.createElement("div");
     row.className = "comment-row";
+    const verifiedBadge = c.verified ? VERIFIED_BADGE_SVG : '';
     row.innerHTML = `
       <img src="${c.avatar}" alt="${c.user}" class="comment-avatar">
       <div class="comment-body">
         <span class="comment-author">${c.user}</span>
+        ${verifiedBadge}
         <span class="comment-text">${c.text}</span>
         <div class="comment-time">${c.time}</div>
       </div>
@@ -432,6 +546,7 @@ function addCustomComment(e) {
 
   const newComment = {
     user: "amigo_cliente",
+    verified: false,
     avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80",
     text: text,
     time: "Justo ahora"
