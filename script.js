@@ -2,8 +2,9 @@
  * Script interactivo para el Instagram Dark Mode de @emprededavid
  * 100% Galletas Navideñas (Sin fotos de personas en publicaciones)
  * Caricaturas personalizadas para la familia y mascotas en Seguidos
- * Comentarios de la familia y de cuentas VERIFICADAS:
- * (elvis_moya, kleyver_rivero, enyel_eugenio, juan david, alex_flores_, dei_v underwater)
+ * Cuentas Verificadas (dei_v, elvis_moya, kleyver_rivero, enyel_eugenio, juan_david, alex_flores_)
+ * Like con Corazón animado al hacer doble click o click en el corazón
+ * Comentarios interactivos como "cliente_especial ❤️" con verificación azul (solo en memoria para jugar)
  */
 
 // SVG Oficial de insignia de cuenta verificada de Instagram
@@ -412,7 +413,18 @@ function renderPosts() {
   postsData.forEach(post => {
     const card = document.createElement("div");
     card.className = "post-card";
-    card.onclick = () => openPostModal(post.id);
+    card.setAttribute("data-id", post.id);
+
+    // Click simple abre el post
+    card.onclick = (e) => {
+      openPostModal(post.id);
+    };
+
+    // Doble click en la tarjeta de la cuadrícula da Like con animación de corazón ❤️
+    card.ondblclick = (e) => {
+      e.stopPropagation();
+      triggerGridLike(post.id, card);
+    };
 
     let badgeHTML = "";
     if (post.badge) {
@@ -440,6 +452,30 @@ function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
   if (num >= 1000) return (num / 1000).toFixed(1) + "k";
   return num;
+}
+
+// Dar Like desde la cuadrícula al hacer doble click
+function triggerGridLike(id, cardElement) {
+  const post = postsData.find(p => p.id === id);
+  if (!post) return;
+
+  if (!post.liked) {
+    post.liked = true;
+    post.likes += 1;
+  }
+
+  // Animación del corazón en la cuadrícula
+  const heart = document.createElement("div");
+  heart.className = "grid-floating-heart";
+  heart.innerText = "❤️";
+  cardElement.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 900);
+
+  renderPosts();
+  showToast("¡Te gusta esta publicación! ❤️");
 }
 
 // Modal de publicación individual
@@ -510,6 +546,27 @@ function closePostModalDirect() {
   currentModalPostId = null;
 }
 
+// Doble click sobre la foto dentro del modal para dar Like estilo Instagram
+function handleImageDblClick() {
+  if (!currentModalPostId) return;
+  const post = postsData.find(p => p.id === currentModalPostId);
+  if (!post) return;
+
+  if (!post.liked) {
+    post.liked = true;
+    post.likes += 1;
+  }
+
+  const heart = document.getElementById("modalFloatingHeart");
+  heart.classList.remove("pop");
+  void heart.offsetWidth; // reiniciar animación CSS
+  heart.classList.add("pop");
+
+  updateModalLikeDisplay(post);
+  renderPosts();
+}
+
+// Dar / Quitar Like con el botón de corazón
 function toggleModalLike() {
   if (!currentModalPostId) return;
   const post = postsData.find(p => p.id === currentModalPostId);
@@ -518,6 +575,18 @@ function toggleModalLike() {
   post.liked = !post.liked;
   post.likes += post.liked ? 1 : -1;
 
+  if (post.liked) {
+    const heart = document.getElementById("modalFloatingHeart");
+    heart.classList.remove("pop");
+    void heart.offsetWidth;
+    heart.classList.add("pop");
+  }
+
+  updateModalLikeDisplay(post);
+  renderPosts();
+}
+
+function updateModalLikeDisplay(post) {
   const likeBtn = document.getElementById("modalLikeBtn");
   const likesDisplay = document.getElementById("modalLikesDisplay");
 
@@ -528,13 +597,13 @@ function toggleModalLike() {
   }
 
   likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
-  renderPosts();
 }
 
 function focusCommentInput() {
   document.getElementById("newCommentInput").focus();
 }
 
+// Añadir comentario como "cliente_especial ❤️" con verificación azul (solo en memoria para jugar)
 function addCustomComment(e) {
   e.preventDefault();
   const input = document.getElementById("newCommentInput");
@@ -544,14 +613,16 @@ function addCustomComment(e) {
   const post = postsData.find(p => p.id === currentModalPostId);
   if (!post) return;
 
+  // Perfil siempre es: cliente_especial ❤️ y VERIFICADO
   const newComment = {
-    user: "amigo_cliente",
-    verified: false,
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80",
+    user: "cliente_especial ❤️",
+    verified: true,
+    avatar: "assets/logo.webp",
     text: text,
     time: "Justo ahora"
   };
 
+  // Se añade al array en memoria (al recargar la página desaparece)
   post.comments.push(newComment);
   input.value = "";
 
@@ -562,6 +633,7 @@ function addCustomComment(e) {
     <img src="${newComment.avatar}" alt="${newComment.user}" class="comment-avatar">
     <div class="comment-body">
       <span class="comment-author">${newComment.user}</span>
+      ${VERIFIED_BADGE_SVG}
       <span class="comment-text">${newComment.text}</span>
       <div class="comment-time">${newComment.time}</div>
     </div>
@@ -570,7 +642,7 @@ function addCustomComment(e) {
   commentsArea.scrollTop = commentsArea.scrollHeight;
 
   renderPosts();
-  showToast("¡Comentario publicado con éxito! 🍪");
+  showToast("¡Comentaste como cliente_especial ❤️! (Verificado)");
 }
 
 function toggleFollow() {

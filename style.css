@@ -34,7 +34,7 @@ body.dark-mode {
 }
 
 /* ========================================================
-   BARRA DE NAVEGACIÓN SUPERIOR
+   BARRA DE NAVEGACIÓN SUPERIOR (LIMPIA, SIN BUSCADOR)
    ======================================================== */
 .instagram-nav {
   position: sticky;
@@ -64,30 +64,6 @@ body.dark-mode {
   letter-spacing: -0.5px;
   cursor: pointer;
   user-select: none;
-}
-
-.nav-search {
-  display: flex;
-  align-items: center;
-  background-color: #262626;
-  border-radius: 8px;
-  padding: 6px 14px;
-  width: 250px;
-}
-
-.nav-search .search-icon {
-  font-size: 13px;
-  margin-right: 8px;
-  opacity: 0.6;
-}
-
-.nav-search input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 14px;
-  width: 100%;
-  color: #a8a8a8;
 }
 
 .nav-actions {
@@ -135,7 +111,6 @@ body.dark-mode {
   align-items: flex-start;
 }
 
-/* Avatar de perfil con anillo de historia */
 .avatar-wrapper {
   flex-grow: 1;
   flex-basis: 0;
@@ -171,7 +146,6 @@ body.dark-mode {
   background-color: #fff;
 }
 
-/* Detalles del perfil */
 .profile-details {
   flex-grow: 2;
   flex-basis: 0;
@@ -494,6 +468,68 @@ body.dark-mode {
 }
 
 /* ========================================================
+   ANIMACIONES DE CORAZÓN ESTILO INSTAGRAM
+   ======================================================== */
+.grid-floating-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 70px;
+  color: #fff;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.9));
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  animation: igHeartPop 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.floating-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 90px;
+  color: #fff;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  user-select: none;
+}
+
+.floating-heart.pop {
+  animation: igHeartPop 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes igHeartPop {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  35% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+  70% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+}
+
+.heart-btn {
+  transition: transform 0.15s ease;
+}
+
+.heart-btn:active {
+  transform: scale(1.3);
+}
+
+.heart-btn.liked svg {
+  fill: #ed4956;
+  color: #ed4956;
+  animation: heartPulse 0.3s ease;
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+/* ========================================================
    FOOTER ESTILO INSTAGRAM
    ======================================================== */
 .profile-footer {
@@ -624,6 +660,9 @@ body.dark-mode {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
 }
 
 .modal-image-col img {
@@ -728,7 +767,7 @@ body.dark-mode {
 
 .comment-author {
   font-weight: 700;
-  margin-right: 6px;
+  margin-right: 4px;
   color: #fff;
 }
 
@@ -763,11 +802,6 @@ body.dark-mode {
   color: var(--ig-primary-text);
   display: flex;
   align-items: center;
-}
-
-.heart-btn.liked svg {
-  fill: #ed4956;
-  color: #ed4956;
 }
 
 .modal-likes-count {
@@ -1129,10 +1163,6 @@ body.dark-mode {
    RESPONSIVO (CELULARES Y TABLETS)
    ======================================================== */
 @media (max-width: 768px) {
-  .nav-search {
-    display: none;
-  }
-
   .nav-actions .nav-btn, .nav-avatar-mini {
     display: none;
   }
