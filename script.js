@@ -1,6 +1,6 @@
 /**
  * Script interactivo para el Instagram Dark Mode de @emprededavid
- * 100% Galletas Navideñas (Sin fotos de personas en publicaciones)
+ * Incluye la publicación especial de TOBBY RAMÓN (El ayudante perruno chef)
  * Caricaturas personalizadas para la familia, mascotas y amigos verificados
  * Lenguaje 100% infantil, dulce, cariñoso y respetuoso (sin palabras de calle o malandras)
  * Padres expresando amor ("Hijo te amamos") y gran orgullo familiar
@@ -33,7 +33,7 @@ const followingData = [
   },
   {
     handle: "tobby_ramon",
-    name: "Tobby Ramón 🐶 (Perrito Mestizo Color Miel)",
+    name: "Tobby Ramón 🐶 (El Ayudante Chef)",
     avatar: "assets/avatars/tobby_avatar.jpg"
   },
   {
@@ -97,7 +97,7 @@ const followersData = [
   { handle: "david_chips_fans", name: "Club de Fans David-Chips 🍪", avatar: "assets/logo.webp" }
 ];
 
-// 3. LAS 7 PUBLICACIONES CON COMENTARIOS DULCES, INFANTILES Y LLENOS DE AMOR FAMILIAR
+// 3. PUBLICACIONES (INCLUYENDO LA PUBLICACIÓN OFICIAL DE TOBBY RAMÓN COMO AYUDANTE)
 const postsData = [
   {
     id: 1,
@@ -163,6 +163,80 @@ const postsData = [
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
         text: "¡Mi mamá ya me dio dinero para comprar varias galletas especiales de muñeco de nieve! 😍🎅",
         time: "30m"
+      }
+    ]
+  },
+  {
+    id: 8,
+    img: "assets/tobby_chef.jpg",
+    badge: "🐾 AYUDANTE ESTRELLA",
+    likes: 142500,
+    liked: false,
+    time: "HACE 1 HORA",
+    caption: "¡Les presento oficialmente a mi ayudante de cocina: Tobby Ramón! 🐶👨‍🍳 Con su gorro de chef y su pañuelo oficial de David-Chips. Siempre a mi lado supervisando que cada galletita navideña quede perfecta y con mucho amor. ¡El mejor compañero repostero del mundo! ❤️🍪🐾",
+    comments: [
+      {
+        user: "tibisay_list",
+        verified: false,
+        avatar: "assets/avatars/tibby_avatar.jpg",
+        text: "¡Hijo te amamos! Tobby Ramón se ve tan hermoso con su gorrito de chef. ¡El mejor equipo de repostería del mundo! 🐶💖🍪",
+        time: "55m"
+      },
+      {
+        user: "felipe_villamizar",
+        verified: false,
+        avatar: "assets/avatars/felipe_avatar.jpg",
+        text: "¡Hijo te amamos! Qué fotaza de Tobby Ramón con el uniforme de David-Chips. ¡Ese ayudante se merece una galletita especial! 👏👨🐾",
+        time: "50m"
+      },
+      {
+        user: "rufa_maria",
+        verified: false,
+        avatar: "assets/avatars/rufa_avatar.jpg",
+        text: "¡Guau guau! 🐾 (Rufa esperando su turno para ponerse el gorro de chef también)",
+        time: "45m"
+      },
+      {
+        user: "tobby_ramon",
+        verified: false,
+        avatar: "assets/avatars/tobby_avatar.jpg",
+        text: "¡Guau! 🐶👨‍🍳 (Tobby reportándose listo para ayudar a David con las galletitas navideñas)",
+        time: "40m"
+      },
+      {
+        user: "kleyver_rivero",
+        verified: true,
+        avatar: "assets/avatars/kleyver_avatar.jpg",
+        text: "¡Qué lindo Tobby con su gorro de chef David! Es el ayudante más tierno del mundo 🐶🍪",
+        time: "35m"
+      },
+      {
+        user: "juan_david",
+        verified: true,
+        avatar: "assets/avatars/juandavid_avatar.jpg",
+        text: "¡Se ve genial Tobby Ramón! El perro chef más famoso de todo el colegio Monseñor Castro 😄👏",
+        time: "30m"
+      },
+      {
+        user: "alex_flores_",
+        verified: true,
+        avatar: "assets/avatars/alex_avatar.jpg",
+        text: "¡Qué hermosa foto David! Ese ayudante de cocina tiene toda la actitud para el 8 de diciembre 🌟",
+        time: "25m"
+      },
+      {
+        user: "dei_v",
+        verified: true,
+        avatar: "assets/avatars/deiv_avatar.jpg",
+        text: "El chef Tobby listo para la cocina 🐶🍪 Mucho cariño y bendiciones para ustedes David 🌊✨",
+        time: "20m"
+      },
+      {
+        user: "sau_henriquez",
+        verified: false,
+        avatar: "assets/avatars/saulimar_avatar.jpg",
+        text: "¡Me muero de amor con Tobby Ramón! Qué elegancia con su pañuelo de David-Chips 🥰🐾",
+        time: "15m"
       }
     ]
   },
@@ -439,7 +513,7 @@ function renderPosts() {
 
     card.innerHTML = `
       ${badgeHTML}
-      <img src="${post.img}" alt="David-Chips Galleta Navideña" loading="lazy">
+      <img src="${post.img}" alt="David-Chips" loading="lazy">
       <div class="post-overlay">
         <span class="overlay-stat">
           ❤️ ${formatNumber(post.likes)}
@@ -565,7 +639,7 @@ function handleImageDblClick() {
 
   const heart = document.getElementById("modalFloatingHeart");
   heart.classList.remove("pop");
-  void heart.offsetWidth; // reiniciar animación CSS
+  void heart.offsetWidth;
   heart.classList.add("pop");
 
   updateModalLikeDisplay(post);
@@ -628,7 +702,6 @@ function addCustomComment(e) {
     time: "Justo ahora"
   };
 
-  // Se añade al array en memoria (al recargar la página desaparece)
   post.comments.push(newComment);
   input.value = "";
 
