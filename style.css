@@ -294,8 +294,16 @@ body.dark-mode {
   display: flex;
   gap: 32px;
   margin-bottom: 44px;
-  padding: 0 10px;
-  overflow-x: auto;
+  padding: 6px 10px;
+  overflow: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.highlights-section::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .highlight-item {
@@ -1240,7 +1248,17 @@ body.dark-mode {
   .highlights-section {
     gap: 16px;
     margin-bottom: 24px;
-    padding-bottom: 6px;
+    padding: 6px 4px 8px 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .highlights-section::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .highlight-ring {
@@ -1291,3 +1309,20 @@ body.dark-mode {
     overflow-y: visible;
   }
 }
+
+/* Scrollbars estilizados modo oscuro para modales */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
