@@ -639,74 +639,263 @@ function triggerGridLike(id, cardElement) {
   showToast("¡Te gusta esta publicación! ❤️");
 }
 
-// Modal de publicación individual
+// Renderizar el Feed Móvil continuo (Estilo Screenshot 2 de Instagram)
+function renderMobileFeed() {
+  const container = document.getElementById("mobileFeedScroll");
+  if (!container) return;
+  container.innerHTML = "";
+
+  postsData.forEach(post => {
+    const article = document.createElement("article");
+    article.className = "feed-post-item";
+    article.id = `feed-post-${post.id}`;
+
+    const heartFill = post.liked ? "#ff3040" : "none";
+    const heartStroke = post.liked ? "#ff3040" : "currentColor";
+    const likedClass = post.liked ? "liked" : "";
+    const sharesCount = Math.floor(post.likes / 1500) || 56;
+
+    article.innerHTML = `
+      <!-- Encabezado de la publicación en feed móvil -->
+      <header class="feed-post-header">
+        <div class="feed-post-author-left">
+          <div class="feed-author-avatar-wrap">
+            <img src="assets/logo.webp" alt="David-Chips" class="feed-author-avatar">
+          </div>
+          <div class="feed-author-meta">
+            <div class="feed-author-name-line">
+              <span class="feed-author-username">emprededavid</span>
+              <span class="verified-badge-mini-inline">✓</span>
+            </div>
+            <span class="feed-author-location">Colegio Monseñor Castro</span>
+          </div>
+        </div>
+        <button class="feed-more-btn" title="Opciones" onclick="showToast('Opciones de publicación')">
+          <svg height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+            <circle cx="12" cy="5" r="2"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+            <circle cx="12" cy="19" r="2"></circle>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Foto con doble tap para dar Like -->
+      <div class="feed-post-media-wrap" ondblclick="handleFeedDoubleTap(${post.id}, this)">
+        <img src="${post.img}" alt="David-Chips" class="feed-post-image">
+        <div class="floating-heart" id="feedHeart-${post.id}">❤️</div>
+      </div>
+
+      <!-- Fila de acciones con NÚMEROS (Screenshot 2 de Instagram) -->
+      <div class="feed-actions-row">
+        <div class="feed-actions-left">
+          <!-- Corazón Me Gusta con contador -->
+          <button class="feed-action-btn heart-btn ${likedClass}" id="feedLikeBtn-${post.id}" onclick="toggleFeedLike(${post.id}, this)" title="Me gusta">
+            <svg fill="${heartFill}" height="24" stroke="${heartStroke}" stroke-width="2" viewBox="0 0 24 24" width="24">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="feed-stat-num" id="feedLikesCount-${post.id}">${formatNumber(post.likes)}</span>
+          </button>
+
+          <!-- Comentarios con contador (abre el Bottom Sheet) -->
+          <button class="feed-action-btn" onclick="openCommentsSheetForPost(${post.id})" title="Ver comentarios">
+            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span class="feed-stat-num" id="feedCommentsCount-${post.id}">${post.comments.length}</span>
+          </button>
+
+          <!-- Republicaciones con contador (Screenshot 2) -->
+          <button class="feed-action-btn" onclick="showToast('Publicación compartida en tu perfil')" title="Republicar">
+            <svg height="22" viewBox="0 0 24 24" width="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+            <span class="feed-stat-num">1</span>
+          </button>
+
+          <!-- Compartir (avioncito de papel) con contador (Screenshot 2) -->
+          <button class="feed-action-btn" onclick="copyProfileLink()" title="Compartir">
+            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24">
+              <line x1="22" x2="11" y1="2" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span class="feed-stat-num">${sharesCount}</span>
+          </button>
+        </div>
+
+        <!-- Guardar (Bookmark) a la derecha -->
+        <button class="feed-action-btn bookmark-btn" onclick="showToast('Guardado en tu colección')" title="Guardar">
+          <svg height="24" viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Pie de foto: Autor + Texto -->
+      <div class="feed-caption-block">
+        <span class="feed-caption-username">emprededavid</span>
+        <span class="feed-caption-text">${post.caption.replace(/\n/g, '<br>')}</span>
+      </div>
+
+      <!-- Botón para ver comentarios -->
+      <button class="feed-view-comments-btn" onclick="openCommentsSheetForPost(${post.id})">
+        Ver los ${post.comments.length} comentarios
+      </button>
+
+      <!-- Timestamp -->
+      <div class="feed-timestamp">${post.time}</div>
+    `;
+
+    container.appendChild(article);
+  });
+}
+
+function handleFeedDoubleTap(postId, wrapElement) {
+  const post = postsData.find(p => p.id === postId);
+  if (!post) return;
+
+  if (!post.liked) {
+    post.liked = true;
+    post.likes += 1;
+  }
+
+  const heart = document.getElementById(`feedHeart-${postId}`);
+  if (heart) {
+    heart.classList.remove("pop");
+    void heart.offsetWidth;
+    heart.classList.add("pop");
+  }
+
+  updateFeedPostLike(post);
+  renderPosts();
+}
+
+function toggleFeedLike(postId, btn) {
+  const post = postsData.find(p => p.id === postId);
+  if (!post) return;
+
+  post.liked = !post.liked;
+  post.likes += post.liked ? 1 : -1;
+
+  if (post.liked) {
+    const heart = document.getElementById(`feedHeart-${postId}`);
+    if (heart) {
+      heart.classList.remove("pop");
+      void heart.offsetWidth;
+      heart.classList.add("pop");
+    }
+  }
+
+  updateFeedPostLike(post);
+  renderPosts();
+}
+
+function updateFeedPostLike(post) {
+  const btn = document.getElementById(`feedLikeBtn-${post.id}`);
+  const countSpan = document.getElementById(`feedLikesCount-${post.id}`);
+  if (btn) {
+    if (post.liked) {
+      btn.classList.add("liked");
+      const svg = btn.querySelector("svg");
+      if (svg) {
+        svg.setAttribute("fill", "#ff3040");
+        svg.setAttribute("stroke", "#ff3040");
+      }
+    } else {
+      btn.classList.remove("liked");
+      const svg = btn.querySelector("svg");
+      if (svg) {
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("stroke", "currentColor");
+      }
+    }
+  }
+  if (countSpan) {
+    countSpan.innerText = formatNumber(post.likes);
+  }
+}
+
+function openCommentsSheetForPost(postId) {
+  currentModalPostId = postId;
+  const post = postsData.find(p => p.id === postId);
+  if (!post) return;
+
+  renderSheetComments(post);
+  openCommentsSheet();
+}
+
+// Abrir publicación (móvil: feed continuo posicionado en la foto; desktop: modal clásico)
 function openPostModal(id) {
   currentModalPostId = id;
   const post = postsData.find(p => p.id === id);
   if (!post) return;
 
   const modal = document.getElementById("postModal");
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  // Renderizar el feed móvil completo
+  renderMobileFeed();
+
+  // Scroll instantáneo al post seleccionado en móvil
+  setTimeout(() => {
+    const targetElement = document.getElementById(`feed-post-${id}`);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "instant", block: "start" });
+    }
+  }, 10);
+
+  // Renderizar modal para vista de escritorio
+  renderDesktopModal(post);
+}
+
+function renderDesktopModal(post) {
   const modalImg = document.getElementById("modalPostImg");
   const commentsArea = document.getElementById("modalCommentsArea");
   const likesDisplay = document.getElementById("modalLikesDisplay");
   const postTime = document.getElementById("modalPostTime");
   const likeBtn = document.getElementById("modalLikeBtn");
 
-  // Elementos móviles (Screenshot 2)
-  const mobileLikeInlineCount = document.getElementById("modalLikeInlineCount");
-  const mobileCommentInlineCount = document.getElementById("modalCommentInlineCount");
-  const mobilePostCaption = document.getElementById("mobilePostCaption");
-  const viewCommentsLink = document.getElementById("viewCommentsLink");
+  if (modalImg) modalImg.src = post.img;
+  if (likesDisplay) likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
+  if (postTime) postTime.innerText = post.time;
 
-  modalImg.src = post.img;
-  likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
-  postTime.innerText = post.time;
-
-  if (mobileLikeInlineCount) mobileLikeInlineCount.innerText = formatNumber(post.likes);
-  if (mobileCommentInlineCount) mobileCommentInlineCount.innerText = post.comments.length;
-  if (mobilePostCaption) mobilePostCaption.innerText = " " + post.caption;
-  if (viewCommentsLink) viewCommentsLink.innerText = `Ver los ${post.comments.length} comentarios`;
-
-  if (post.liked) {
-    likeBtn.classList.add("liked");
-  } else {
-    likeBtn.classList.remove("liked");
+  if (likeBtn) {
+    if (post.liked) {
+      likeBtn.classList.add("liked");
+    } else {
+      likeBtn.classList.remove("liked");
+    }
   }
 
-  // Comentarios en versión de escritorio
-  commentsArea.innerHTML = `
-    <div class="comment-row caption-row">
-      <img src="assets/logo.webp" alt="David-Chips" class="comment-avatar">
-      <div class="comment-body">
-        <span class="comment-author">emprededavid</span>
-        ${VERIFIED_BADGE_SVG}
-        <span class="comment-text">${post.caption.replace(/\n/g, '<br>')}</span>
-        <div class="comment-time">${post.time}</div>
-      </div>
-    </div>
-  `;
-
-  post.comments.forEach(c => {
-    const row = document.createElement("div");
-    row.className = "comment-row";
-    const verifiedBadge = c.verified ? VERIFIED_BADGE_SVG : '';
-    row.innerHTML = `
-      <img src="${c.avatar}" alt="${c.user}" class="comment-avatar">
-      <div class="comment-body">
-        <span class="comment-author">${c.user}</span>
-        ${verifiedBadge}
-        <span class="comment-text">${c.text}</span>
-        <div class="comment-time">${c.time}</div>
+  if (commentsArea) {
+    commentsArea.innerHTML = `
+      <div class="comment-row caption-row">
+        <img src="assets/logo.webp" alt="David-Chips" class="comment-avatar">
+        <div class="comment-body">
+          <span class="comment-author">emprededavid</span>
+          ${VERIFIED_BADGE_SVG}
+          <span class="comment-text">${post.caption.replace(/\n/g, '<br>')}</span>
+          <div class="comment-time">${post.time}</div>
+        </div>
       </div>
     `;
-    commentsArea.appendChild(row);
-  });
 
-  // Renderizar la lista de comentarios en el Bottom Sheet móvil (Screenshot 1)
-  renderSheetComments(post);
-
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
+    post.comments.forEach(c => {
+      const row = document.createElement("div");
+      row.className = "comment-row";
+      const verifiedBadge = c.verified ? VERIFIED_BADGE_SVG : '';
+      row.innerHTML = `
+        <img src="${c.avatar}" alt="${c.user}" class="comment-avatar">
+        <div class="comment-body">
+          <span class="comment-author">${c.user}</span>
+          ${verifiedBadge}
+          <span class="comment-text">${c.text}</span>
+          <div class="comment-time">${c.time}</div>
+        </div>
+      `;
+      commentsArea.appendChild(row);
+    });
+  }
 }
 
 function renderSheetComments(post) {
@@ -787,7 +976,9 @@ function closePostModal(e) {
 
 function closePostModalDirect() {
   const modal = document.getElementById("postModal");
-  modal.classList.remove("active");
+  if (modal) {
+    modal.classList.remove("active");
+  }
   closeCommentsSheetDirect();
   document.body.style.overflow = "auto";
   currentModalPostId = null;
@@ -805,15 +996,17 @@ function handleImageDblClick() {
   }
 
   const heart = document.getElementById("modalFloatingHeart");
-  heart.classList.remove("pop");
-  void heart.offsetWidth;
-  heart.classList.add("pop");
+  if (heart) {
+    heart.classList.remove("pop");
+    void heart.offsetWidth;
+    heart.classList.add("pop");
+  }
 
   updateModalLikeDisplay(post);
   renderPosts();
 }
 
-// Dar / Quitar Like con el botón de corazón
+// Dar / Quitar Like con el botón de corazón en modal de escritorio
 function toggleModalLike() {
   if (!currentModalPostId) return;
   const post = postsData.find(p => p.id === currentModalPostId);
@@ -824,9 +1017,11 @@ function toggleModalLike() {
 
   if (post.liked) {
     const heart = document.getElementById("modalFloatingHeart");
-    heart.classList.remove("pop");
-    void heart.offsetWidth;
-    heart.classList.add("pop");
+    if (heart) {
+      heart.classList.remove("pop");
+      void heart.offsetWidth;
+      heart.classList.add("pop");
+    }
   }
 
   updateModalLikeDisplay(post);
@@ -836,16 +1031,18 @@ function toggleModalLike() {
 function updateModalLikeDisplay(post) {
   const likeBtn = document.getElementById("modalLikeBtn");
   const likesDisplay = document.getElementById("modalLikesDisplay");
-  const mobileLikeInlineCount = document.getElementById("modalLikeInlineCount");
 
-  if (post.liked) {
-    likeBtn.classList.add("liked");
-  } else {
-    likeBtn.classList.remove("liked");
+  if (likeBtn) {
+    if (post.liked) {
+      likeBtn.classList.add("liked");
+    } else {
+      likeBtn.classList.remove("liked");
+    }
   }
 
-  likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
-  if (mobileLikeInlineCount) mobileLikeInlineCount.innerText = formatNumber(post.likes);
+  if (likesDisplay) {
+    likesDisplay.innerText = `${post.likes.toLocaleString()} Me gusta`;
+  }
 }
 
 function focusCommentInput() {
@@ -884,7 +1081,10 @@ function addCustomComment(e) {
   if (inputMobile) inputMobile.value = "";
   if (inputDesktop) inputDesktop.value = "";
 
-  openPostModal(currentModalPostId);
+  renderSheetComments(post);
+  renderDesktopModal(post);
+  const feedCommentCount = document.getElementById(`feedCommentsCount-${post.id}`);
+  if (feedCommentCount) feedCommentCount.innerText = post.comments.length;
   renderPosts();
   showToast("¡Comentaste como cliente_especial ❤️! (Verificado)");
 }

@@ -601,6 +601,17 @@ body.dark-mode {
   display: flex;
 }
 
+.mobile-feed-view {
+  display: none !important;
+}
+
+.desktop-post-modal {
+  display: block;
+  position: relative;
+  max-width: 950px;
+  width: 100%;
+}
+
 .post-modal-content {
   background-color: #000000;
   border: 1px solid var(--ig-border);
@@ -1575,160 +1586,237 @@ body.dark-mode {
     border: none;
   }
 
-  /* Vista de Publicación en Móvil (Screenshot 2) */
+  /* Vista de Publicaciones en Móvil: FEED CONTINUO (Screenshot 2 de Instagram) */
+  .desktop-post-modal {
+    display: none !important;
+  }
+
   .modal-overlay {
-    padding: 0;
-    align-items: flex-start;
-    background-color: #000;
+    padding: 0 !important;
+    align-items: flex-start !important;
+    background-color: #000000 !important;
+    z-index: 2500;
   }
 
-  .post-modal-content {
-    width: 100%;
-    max-width: 100%;
-    height: 100vh;
-    border-radius: 0;
+  .mobile-feed-view {
+    display: flex !important;
     flex-direction: column;
-    overflow-y: auto;
-    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    overflow: hidden;
   }
 
-  .mobile-post-view-header {
+  /* Barra superior fija "← Publicaciones" */
+  .mobile-feed-top-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 46px;
-    padding: 0 14px;
+    padding: 0 12px;
+    background-color: #000000;
     border-bottom: 1px solid #1a1a1a;
-    background-color: #000;
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 50;
+    flex-shrink: 0;
   }
 
   .mobile-back-btn {
     background: none;
     border: none;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
-    padding: 0;
+    padding: 6px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
-  .mobile-header-title {
+  .mobile-back-btn svg {
+    fill: #ffffff;
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobile-feed-title {
     font-size: 16px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff;
+    letter-spacing: -0.2px;
   }
 
-  .mobile-post-author-bar {
+  /* Contenedor con scroll vertical fluido para todo el feed */
+  .mobile-feed-scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 60px;
+  }
+
+  /* Tarjeta de cada publicación en el feed */
+  .feed-post-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #161616;
+  }
+
+  .feed-post-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px;
-    background-color: #000;
+    padding: 9px 12px;
+    background-color: #000000;
   }
 
-  .mobile-author-left {
+  .feed-post-author-left {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .modal-avatar-tiny {
-    width: 34px;
-    height: 34px;
+  .feed-author-avatar-wrap {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    overflow: hidden;
     border: 1px solid #262626;
+    background-color: #ffffff;
   }
 
-  .mobile-author-names {
+  .feed-author-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .feed-author-meta {
     display: flex;
     flex-direction: column;
   }
 
-  .mobile-author-user {
+  .feed-author-name-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .feed-author-username {
     font-size: 13.5px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff;
   }
 
-  .verified-badge-mini-inline {
-    color: #0095f6;
-    font-size: 12px;
-    margin-left: 2px;
-  }
-
-  .mobile-author-location {
-    font-size: 11.5px;
+  .feed-author-location {
+    font-size: 11px;
     color: #a8a8a8;
   }
 
-  .mobile-more-btn {
+  .feed-more-btn {
     background: none;
     border: none;
-    color: #fff;
-    font-size: 18px;
+    color: #ffffff;
     cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .modal-image-col {
-    height: auto;
-    max-height: none;
-    flex: none;
-    background: #000;
+  .feed-post-media-wrap {
+    position: relative;
+    width: 100%;
+    background-color: #000000;
+    overflow: hidden;
+    user-select: none;
   }
 
-  .modal-image-col img {
-    object-fit: contain;
+  .feed-post-image {
     width: 100%;
     height: auto;
-    max-height: 550px;
+    max-height: 580px;
+    object-fit: contain;
+    display: block;
+    background-color: #050505;
   }
 
-  .modal-bottom-actions {
-    padding: 10px 14px 20px 14px;
+  /* Fila de acciones con NÚMEROS exactos (Screenshot 2 de Instagram) */
+  .feed-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px 6px 12px;
   }
 
-  .action-left-group {
+  .feed-actions-left {
     display: flex;
     align-items: center;
     gap: 16px;
   }
 
-  .action-stat-count {
+  .feed-action-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    transition: transform 0.1s ease;
+  }
+
+  .feed-action-btn:active {
+    transform: scale(1.15);
+  }
+
+  .feed-action-btn svg {
+    stroke: currentColor;
+    width: 23px;
+    height: 23px;
+  }
+
+  .feed-action-btn.heart-btn.liked svg {
+    fill: #ff3040;
+    stroke: #ff3040;
+  }
+
+  .feed-stat-num {
     font-size: 13px;
     font-weight: 600;
-    margin-left: 5px;
-    color: #fff;
+    color: #ffffff;
   }
 
-  .mobile-caption-box {
-    padding: 8px 0 4px 0;
-    font-size: 13.5px;
+  .feed-caption-block {
+    padding: 4px 12px;
+    font-size: 13px;
     line-height: 1.4;
-  }
-
-  .mobile-caption-author {
-    font-weight: 700;
-    color: #fff;
-    margin-right: 4px;
-  }
-
-  .mobile-caption-text {
     color: #efefef;
   }
 
-  .view-comments-btn {
+  .feed-caption-username {
+    font-weight: 700;
+    color: #ffffff;
+    margin-right: 5px;
+  }
+
+  .feed-view-comments-btn {
     background: none;
     border: none;
     color: #a8a8a8;
     font-size: 13px;
-    padding: 6px 0;
-    text-align: left;
-    cursor: pointer;
-    display: block;
     font-family: inherit;
+    padding: 4px 12px;
+    cursor: pointer;
+    text-align: left;
+    display: block;
+  }
+
+  .feed-timestamp {
+    padding: 2px 12px 14px 12px;
+    font-size: 11px;
+    color: #737373;
+    text-transform: uppercase;
   }
 
   /* Bottom Sheet de Comentarios Móvil (Screenshot 1) */
