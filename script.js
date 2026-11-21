@@ -102,7 +102,7 @@ const postsData = [
   {
     id: 9,
     img: "assets/rufa_chef.jpg",
-    badge: "🐾 AYUDANTE #1 DE COCINA",
+    badge: "Ayudante #1 🐾",
     likes: 156800,
     liked: false,
     time: "HACE 1 HORA",
@@ -176,7 +176,7 @@ const postsData = [
   {
     id: 8,
     img: "assets/tobby_chef.jpg",
-    badge: "🐾 AYUDANTE #2 DE COCINA",
+    badge: "Ayudante #2 🐶",
     likes: 142500,
     liked: false,
     time: "HACE 2 HORAS",
@@ -250,7 +250,7 @@ const postsData = [
   {
     id: 1,
     img: "assets/flyer.jpg",
-    badge: "📌 ¡ANUNCIO OFICIAL!",
+    badge: "8 de Dic 📌",
     likes: 125430,
     liked: false,
     time: "HACE 2 HORAS",

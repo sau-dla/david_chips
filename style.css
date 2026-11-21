@@ -57,6 +57,13 @@ body.dark-mode {
   justify-content: space-between;
 }
 
+.nav-desktop-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .ig-logo-text {
   font-family: 'Pacifico', cursive;
   font-size: 26px;
@@ -66,24 +73,21 @@ body.dark-mode {
   user-select: none;
 }
 
-.nav-actions {
+.nav-desktop-center {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 6px;
 }
 
-.nav-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+.desktop-nav-username {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-desktop-actions {
   display: flex;
   align-items: center;
-  color: var(--ig-primary-text);
-  transition: transform 0.15s ease;
-}
-
-.nav-btn:hover {
-  transform: scale(1.1);
 }
 
 .nav-avatar-mini img {
@@ -96,27 +100,17 @@ body.dark-mode {
   background-color: #fff;
 }
 
-/* ========================================================
-   CONTENEDOR DE PERFIL
-   ======================================================== */
-.profile-container {
-  max-width: 935px;
-  margin: 30px auto 50px auto;
-  padding: 0 20px;
+/* Ocultar elementos móviles en desktop */
+.nav-mobile-bar {
+  display: none !important;
 }
 
-.profile-header {
-  margin-bottom: 40px;
+.mobile-bottom-bar {
+  display: none !important;
 }
 
-.profile-main-row {
-  display: flex;
-  align-items: flex-start;
-}
-
-.profile-info-col {
-  flex-grow: 2;
-  flex-basis: 0;
+.profile-action-buttons {
+  display: none !important;
 }
 
 .mobile-only {
@@ -584,39 +578,6 @@ body.dark-mode {
   color: var(--ig-secondary-text);
   font-size: 12px;
   letter-spacing: 0.5px;
-}
-
-/* ========================================================
-   BARRA INFERIOR MÓVIL
-   ======================================================== */
-.mobile-bottom-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: var(--ig-bg);
-  border-top: 1px solid var(--ig-border);
-  height: 52px;
-  z-index: 100;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.mob-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
-}
-
-.mob-avatar img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid var(--ig-border);
-  background-color: #fff;
 }
 
 /* ========================================================
@@ -1191,136 +1152,151 @@ body.dark-mode {
     display: none !important;
   }
 
-  .mobile-only {
-    display: block !important;
+  .nav-desktop-bar {
+    display: none !important;
   }
 
-  .mobile-action-buttons.mobile-only {
-    display: flex !important;
-  }
-
-  /* Barra de Navegación Móvil (Screenshot 3 - Sin buscador) */
+  /* Barra de Navegación Móvil (Screenshot 2: NOMBRE CENTRADO EN EL MEDIO) */
   .instagram-nav {
-    height: 46px;
-    padding: 0 14px;
+    height: 44px;
+    padding: 0 12px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #000;
+    background-color: #000000;
     border-bottom: 1px solid #1a1a1a;
   }
 
   .nav-container {
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .nav-mobile-bar {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+    display: flex !important;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
+    height: 100%;
   }
 
-  .nav-icon-btn {
+  .mobile-back-icon {
     background: none;
     border: none;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
-    padding: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
   }
 
-  .nav-mobile-user-title {
+  .mobile-back-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #ffffff;
+  }
+
+  /* Nombre centrado exactamente en el medio de la pantalla */
+  .nav-mobile-center-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 4px;
-    cursor: pointer;
+    z-index: 5;
+    pointer-events: auto;
+    white-space: nowrap;
   }
 
   .nav-mobile-username {
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 700;
-    color: #fff;
-    letter-spacing: -0.3px;
+    color: #ffffff;
+    letter-spacing: -0.2px;
   }
 
-  .chevron-down {
-    color: #fff;
-    margin-left: 2px;
+  .verified-badge-mini {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-mobile-right-icons {
     display: flex;
     align-items: center;
-    gap: 18px;
-    color: #fff;
+    gap: 14px;
+    z-index: 10;
   }
 
-  .threads-icon {
+  .nav-icon-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
     cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-icon-btn svg {
+    color: #ffffff;
   }
 
   /* Contenedor Principal en Móvil */
   .profile-container {
     margin-top: 10px;
+    margin-bottom: 60px;
     padding: 0 14px;
   }
 
   .profile-header {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
+  /* Fila Superior: Avatar a la izquierda, Nombre + Estadísticas a la derecha */
   .profile-main-row {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     margin-bottom: 12px;
   }
 
   .avatar-wrapper {
     position: relative;
-    margin-right: 0;
     flex-grow: 0;
     flex-shrink: 0;
-  }
-
-  /* Burbuja de nota estilo Screenshot 3 ("David-Chips 🍪") */
-  .avatar-note-bubble {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #262626;
-    color: #fff;
-    font-size: 10.5px;
-    font-weight: 500;
-    padding: 2.5px 7px;
-    border-radius: 10px;
-    white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    z-index: 5;
-  }
-
-  .avatar-note-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 4px 4px 0 4px;
-    border-style: solid;
-    border-color: #262626 transparent transparent transparent;
+    margin-right: 0;
   }
 
   .story-ring {
-    width: 80px;
-    height: 80px;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
     padding: 2.5px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
   }
 
   .profile-avatar {
-    border-width: 2.5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2.5px solid #000000;
+    object-fit: cover;
+    background-color: #ffffff;
   }
 
   .profile-info-col {
@@ -1328,20 +1304,23 @@ body.dark-mode {
     min-width: 0;
   }
 
-  .mobile-name-row {
+  .profile-header-name {
     margin-bottom: 6px;
   }
 
-  .mobile-bold-name {
+  .brand-title {
     font-size: 15px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Estadísticas en fila al lado derecho del avatar (Screenshot 3) */
+  /* Estadísticas en 3 columnas a la derecha del avatar (Screenshot 2) */
   .stats-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     list-style: none;
     margin: 0;
@@ -1355,99 +1334,117 @@ body.dark-mode {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 0;
     cursor: pointer;
+    flex: 1;
+    margin-right: 0;
   }
 
   .stats-list li strong {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
-    color: var(--ig-primary-text);
+    color: #ffffff;
     line-height: 1.2;
   }
 
   .stats-list li span {
-    font-size: 12px;
-    color: var(--ig-secondary-text);
+    font-size: 11px;
+    color: #a8a8a8;
     margin-top: 2px;
     display: block;
   }
 
   /* Biografía a todo lo ancho debajo de la fila del avatar */
-  .profile-bio.mobile-only {
+  .profile-bio {
     width: 100%;
-    margin-bottom: 14px;
-    font-size: 13.5px;
-    line-height: 1.45;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .bio-category {
+    font-size: 12px;
+    color: #a8a8a8;
+    margin-bottom: 2px;
+    font-weight: 500;
   }
 
   .bio-full-name {
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 700;
+    color: #ffffff;
     margin-bottom: 3px;
   }
 
-  .bio-tag {
-    font-size: 12px;
-    color: var(--ig-secondary-text);
-    margin-bottom: 4px;
+  .bio-description {
+    font-size: 13px;
+    color: #f0f0f0;
+    margin-bottom: 5px;
+    white-space: pre-line;
   }
 
-  .bio-description {
-    font-size: 13.5px;
-    margin-bottom: 6px;
+  .bio-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 600;
   }
 
   .bio-link a {
-    font-size: 13px;
+    color: #e0f1ff;
+    text-decoration: none;
     word-break: break-all;
   }
 
-  /* Botones de acción en móvil: Seguir | Compartir perfil | +👤 (Screenshot 3) */
-  .mobile-action-buttons {
-    display: flex;
+  /* 4 Botones de acción en fila estilo Screenshot 2 (Bonsai Sushi) */
+  .profile-action-buttons {
+    display: flex !important;
     gap: 6px;
     width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
+    align-items: center;
   }
 
-  .mobile-btn-f,
-  .mobile-btn-s {
+  .btn-action-pill {
     flex: 1;
-    height: 34px;
-    padding: 0 10px;
-    font-size: 13.5px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 13px;
     font-weight: 600;
     border-radius: 8px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #262626;
+    color: #ffffff;
     border: none;
     cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
   }
 
-  .mobile-btn-f {
-    background-color: var(--ig-blue);
-    color: #fff;
+  .btn-action-pill:active {
+    background-color: #363636;
   }
 
-  .mobile-btn-f.following {
-    background-color: var(--ig-btn-secondary);
-    color: #f5f5f5;
+  .btn-action-pill.btn-follow {
+    background-color: #0095f6;
+    color: #ffffff;
   }
 
-  .mobile-btn-s {
-    background-color: var(--ig-btn-secondary);
-    color: #fff;
+  .btn-action-pill.btn-follow.following {
+    background-color: #262626;
+    color: #ffffff;
   }
 
-  .mobile-btn-icon {
+  .btn-action-icon {
     width: 34px;
-    height: 34px;
+    height: 32px;
     flex-shrink: 0;
-    background-color: var(--ig-btn-secondary);
-    color: #fff;
+    background-color: #262626;
+    color: #ffffff;
     border: none;
     border-radius: 8px;
     display: flex;
@@ -1456,11 +1453,18 @@ body.dark-mode {
     cursor: pointer;
   }
 
-  /* Historias destacadas en móvil */
+  .btn-action-icon svg {
+    fill: #ffffff;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Historias destacadas en móvil (Sin barras de scroll) */
   .highlights-section {
+    display: flex;
     gap: 16px;
-    margin-bottom: 16px;
-    padding: 4px 2px 8px 2px;
+    margin-bottom: 12px;
+    padding: 2px 2px 6px 2px;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
@@ -1474,31 +1478,40 @@ body.dark-mode {
   }
 
   .highlight-item {
-    width: 68px;
+    width: 66px;
+    flex-shrink: 0;
   }
 
   .highlight-ring {
     width: 64px;
     height: 64px;
     padding: 2.5px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    border: 2px solid #262626;
+  }
+
+  .highlight-special .special-ring {
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    border: none;
   }
 
   .highlight-title {
     font-size: 11px;
-    max-width: 68px;
+    max-width: 66px;
+    color: #ffffff;
   }
 
-  /* Pestañas de navegación estilo Screenshot 3 con indicador blanco */
+  /* Pestañas de navegación estilo Screenshot 2 (Grid, Reels, Reposts, Tagged) */
   .profile-tabs {
     display: flex;
     border-top: 1px solid #262626;
     margin-bottom: 2px;
+    gap: 0;
   }
 
   .tab-item {
     flex: 1;
-    height: 44px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1511,7 +1524,8 @@ body.dark-mode {
   }
 
   .tab-item.active {
-    color: #fff;
+    color: #ffffff;
+    border-top: none;
   }
 
   .tab-item.active::after {
@@ -1521,7 +1535,12 @@ body.dark-mode {
     left: 0;
     width: 100%;
     height: 1.5px;
-    background-color: #fff;
+    background-color: #ffffff;
+  }
+
+  .tab-item svg {
+    width: 22px;
+    height: 22px;
   }
 
   /* Cuadrícula de fotos 3x3 borde a borde perfecta */
@@ -1530,6 +1549,7 @@ body.dark-mode {
     gap: 2px;
     margin-left: -14px;
     margin-right: -14px;
+    margin-top: 0;
   }
 
   .post-card {
@@ -1538,10 +1558,21 @@ body.dark-mode {
   }
 
   .special-post-badge {
-    font-size: 8px;
-    padding: 2px 4px;
-    top: 4px;
-    right: 4px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: auto;
+    background: rgba(220, 39, 67, 0.92);
+    color: #ffffff;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+    border: none;
   }
 
   /* Vista de Publicación en Móvil (Screenshot 2) */
@@ -1955,9 +1986,9 @@ body.dark-mode {
     border-radius: 12px 12px 0 0;
   }
 
-  /* Barra inferior fija Screenshot 3 (SIN BUSCADOR) */
+  /* Barra inferior móvil: SOLO 2 ÍCONOS (MENÚ Y PERFIL) */
   .mobile-bottom-bar {
-    display: flex;
+    display: flex !important;
     justify-content: space-around;
     align-items: center;
     position: fixed;
@@ -1965,38 +1996,50 @@ body.dark-mode {
     left: 0;
     right: 0;
     height: 48px;
-    background: #000;
+    background-color: #000000;
     border-top: 1px solid #1a1a1a;
     z-index: 1000;
+    padding: 0 60px;
   }
 
   .mob-btn {
     background: none;
     border: none;
-    color: #fff;
-    padding: 8px;
+    color: #ffffff;
+    padding: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  .mob-btn svg {
+    stroke: #ffffff;
+    width: 24px;
+    height: 24px;
+  }
+
   .mob-avatar {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    border: 1.5px solid #ffffff;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mob-avatar.active-avatar {
-    border: 1.5px solid #fff;
+    border: 1.5px solid #ffffff;
   }
 
   .mob-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background-color: #ffffff;
   }
 
   .profile-footer {
