@@ -333,13 +333,30 @@
       <div class="story-progress-container">
         <div class="story-progress-bar" id="storyProgressBar"></div>
       </div>
+
+      <!-- Barra superior de la historia con botón Atrás y botón Cerrar -->
       <div class="story-header">
+        <button class="story-back-btn" onclick="closeStoryDirect()" title="Volver atrás">
+          <svg height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+          </svg>
+        </button>
         <img src="assets/logo.webp" alt="David-Chips" class="story-user-avatar">
         <span class="story-username">emprededavid</span>
         <span class="story-time">1h</span>
-        <button class="story-close" onclick="closeStoryDirect()">&times;</button>
+        <button class="story-close" onclick="closeStoryDirect()" title="Cerrar historia">
+          <svg height="22" viewBox="0 0 24 24" width="22" fill="none" stroke="currentColor" stroke-width="2.4">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
+
       <div class="story-content-body">
+        <!-- Zonas táctiles para navegar y salir -->
+        <div class="story-tap-left" onclick="handleStoryTap('prev', event)"></div>
+        <div class="story-tap-right" onclick="handleStoryTap('next', event)"></div>
+
         <img id="storyMediaImg" src="" alt="Historia">
         <div class="story-badge-announcement" id="storyTextBadge"></div>
       </div>

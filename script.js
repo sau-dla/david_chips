@@ -830,7 +830,12 @@ function openPostModal(id) {
   if (!post) return;
 
   const modal = document.getElementById("postModal");
-  modal.classList.add("active");
+  if (!modal.classList.contains("active")) {
+    modal.classList.add("active");
+    try {
+      window.history.pushState({ modal: "post" }, "");
+    } catch (e) {}
+  }
   document.body.style.overflow = "hidden";
 
   // Renderizar el feed móvil completo
@@ -932,6 +937,9 @@ function openCommentsSheet() {
   const sheet = document.getElementById("commentsSheetOverlay");
   if (sheet) {
     sheet.classList.add("active");
+    try {
+      window.history.pushState({ modal: "comments" }, "");
+    } catch (e) {}
   }
 }
 
@@ -941,10 +949,15 @@ function closeCommentsSheet(e) {
   }
 }
 
-function closeCommentsSheetDirect() {
+function closeCommentsSheetDirect(triggerHistoryBack = true) {
   const sheet = document.getElementById("commentsSheetOverlay");
   if (sheet) {
     sheet.classList.remove("active");
+  }
+  if (triggerHistoryBack && window.history.state && window.history.state.modal === "comments") {
+    try {
+      window.history.back();
+    } catch (e) {}
   }
 }
 
@@ -974,14 +987,20 @@ function closePostModal(e) {
   }
 }
 
-function closePostModalDirect() {
+function closePostModalDirect(triggerHistoryBack = true) {
   const modal = document.getElementById("postModal");
   if (modal) {
     modal.classList.remove("active");
   }
-  closeCommentsSheetDirect();
+  closeCommentsSheetDirect(false);
   document.body.style.overflow = "auto";
   currentModalPostId = null;
+
+  if (triggerHistoryBack && window.history.state && window.history.state.modal === "post") {
+    try {
+      window.history.back();
+    } catch (e) {}
+  }
 }
 
 // Doble click sobre la foto dentro del modal para dar Like estilo Instagram
@@ -1135,10 +1154,13 @@ function showToast(message) {
 // ==========================================
 // VISOR DE HISTORIAS DESTACADAS
 // ==========================================
+let currentStoryIndex = 0;
+
 function openStoryHighlight(index) {
   const story = storiesData[index];
   if (!story) return;
 
+  currentStoryIndex = index;
   const viewer = document.getElementById("storyViewer");
   const mediaImg = document.getElementById("storyMediaImg");
   const textBadge = document.getElementById("storyTextBadge");
@@ -1146,7 +1168,13 @@ function openStoryHighlight(index) {
 
   mediaImg.src = story.img;
   textBadge.innerHTML = story.text;
-  viewer.classList.add("active");
+
+  if (!viewer.classList.contains("active")) {
+    viewer.classList.add("active");
+    try {
+      window.history.pushState({ modal: "story" }, "");
+    } catch (e) {}
+  }
   document.body.style.overflow = "hidden";
 
   progressBar.style.width = "0%";
@@ -1158,13 +1186,33 @@ function openStoryHighlight(index) {
     progressBar.style.width = `${progress}%`;
     if (progress >= 100) {
       clearInterval(storyTimer);
-      if (index + 1 < storiesData.length) {
-        openStoryHighlight(index + 1);
+      if (currentStoryIndex + 1 < storiesData.length) {
+        openStoryHighlight(currentStoryIndex + 1);
       } else {
         closeStoryDirect();
       }
     }
   }, 100);
+}
+
+// Navegar entre historias al tocar izquierda o derecha, o salir si está en la primera/última
+function handleStoryTap(direction, event) {
+  if (event) event.stopPropagation();
+
+  if (direction === "prev") {
+    if (currentStoryIndex > 0) {
+      openStoryHighlight(currentStoryIndex - 1);
+    } else {
+      // Si está en la primera historia y da atrás, sale de la historia
+      closeStoryDirect();
+    }
+  } else if (direction === "next") {
+    if (currentStoryIndex < storiesData.length - 1) {
+      openStoryHighlight(currentStoryIndex + 1);
+    } else {
+      closeStoryDirect();
+    }
+  }
 }
 
 function closeStory(e) {
@@ -1173,11 +1221,19 @@ function closeStory(e) {
   }
 }
 
-function closeStoryDirect() {
+function closeStoryDirect(triggerHistoryBack = true) {
   const viewer = document.getElementById("storyViewer");
-  viewer.classList.remove("active");
+  if (viewer) {
+    viewer.classList.remove("active");
+  }
   document.body.style.overflow = "auto";
   clearInterval(storyTimer);
+
+  if (triggerHistoryBack && window.history.state && window.history.state.modal === "story") {
+    try {
+      window.history.back();
+    } catch (e) {}
+  }
 }
 
 // ==========================================
@@ -1186,7 +1242,12 @@ function closeStoryDirect() {
 function openFollowersModal() {
   const modal = document.getElementById("followersModal");
   renderFollowersList(followersData);
-  modal.classList.add("active");
+  if (!modal.classList.contains("active")) {
+    modal.classList.add("active");
+    try {
+      window.history.pushState({ modal: "followers" }, "");
+    } catch (e) {}
+  }
   document.body.style.overflow = "hidden";
 }
 
@@ -1243,7 +1304,12 @@ function openFollowingModal() {
     container.appendChild(row);
   });
 
-  modal.classList.add("active");
+  if (!modal.classList.contains("active")) {
+    modal.classList.add("active");
+    try {
+      window.history.pushState({ modal: "following" }, "");
+    } catch (e) {}
+  }
   document.body.style.overflow = "hidden";
 }
 
@@ -1270,13 +1336,50 @@ function closeListModal(e, modalId) {
   }
 }
 
-function closeListModalDirect(modalId) {
+function closeListModalDirect(modalId, triggerHistoryBack = true) {
   const modal = document.getElementById(modalId);
-  modal.classList.remove("active");
+  if (modal) {
+    modal.classList.remove("active");
+  }
   document.body.style.overflow = "auto";
+
+  if (triggerHistoryBack && window.history.state && (window.history.state.modal === "followers" || window.history.state.modal === "following")) {
+    try {
+      window.history.back();
+    } catch (e) {}
+  }
 }
 
-// Tecla ESC para cerrar cualquier modal
+// Soporte para botón "Atrás" nativo de Android / Navegador
+window.addEventListener("popstate", (e) => {
+  const commentsSheet = document.getElementById("commentsSheetOverlay");
+  if (commentsSheet && commentsSheet.classList.contains("active")) {
+    closeCommentsSheetDirect(false);
+    return;
+  }
+  const storyViewer = document.getElementById("storyViewer");
+  if (storyViewer && storyViewer.classList.contains("active")) {
+    closeStoryDirect(false);
+    return;
+  }
+  const postModal = document.getElementById("postModal");
+  if (postModal && postModal.classList.contains("active")) {
+    closePostModalDirect(false);
+    return;
+  }
+  const followersModal = document.getElementById("followersModal");
+  if (followersModal && followersModal.classList.contains("active")) {
+    closeListModalDirect("followersModal", false);
+    return;
+  }
+  const followingModal = document.getElementById("followingModal");
+  if (followingModal && followingModal.classList.contains("active")) {
+    closeListModalDirect("followingModal", false);
+    return;
+  }
+});
+
+// Tecla ESC para cerrar cualquier modal en desktop
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closePostModalDirect();
@@ -1288,4 +1391,25 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderPosts();
+
+  // Gestos táctiles de deslizamiento para salir de la historia
+  const storyViewer = document.getElementById("storyViewer");
+  if (storyViewer) {
+    let touchStartY = 0;
+    let touchStartX = 0;
+
+    storyViewer.addEventListener("touchstart", (e) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    storyViewer.addEventListener("touchend", (e) => {
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      // Deslizar hacia abajo o hacia la derecha cierra la historia
+      if (diffY > 50 || diffX > 70) {
+        closeStoryDirect();
+      }
+    }, { passive: true });
+  }
 });
